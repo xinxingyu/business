@@ -1,21 +1,20 @@
 <template>
   <div id="app">
     <HeaderBox></HeaderBox>
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div> -->
     <router-view />
+    <FooterBox></FooterBox>
   </div>
 </template>
 
 <script>
 import HeaderBox from "components/HeaderBox";
+import FooterBox from "components/FooterBox";
 
 export default {
   name: "APP",
   components: {
-    HeaderBox
+    HeaderBox,
+    FooterBox
   },
   methods: {}
 };
