@@ -126,10 +126,6 @@ const EcologyInfoList = [
     router: ""
   },
   {
-    key: "牡丹基地",
-    router: ""
-  },
-  {
     key: "五常水稻基地",
     router: ""
   },
