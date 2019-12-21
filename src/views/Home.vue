@@ -7,7 +7,7 @@
           <div
             class="swiper-slide"
             v-for="item in imagesList"
-            v-bind:key="item.path"
+            v-bind:key="item.index"
             :style="{ backgroundImage: 'url(' + item.path + ')' }"
           ></div>
         </div>
@@ -36,6 +36,33 @@
         </div>
       </div>
     </div>
+    <div class="main">
+      <div class="about">
+        <div class="about-info">
+          <div class="about-info-title">
+            <p class="info-main">关于我们</p>
+            <p class="info-tips">About us</p>
+          </div>
+          <div class="about-info-content">
+            <p class="info-main">中泰高科控股集团股份有限公司</p>
+            <p class="info-tips">
+              集团由中国知名金融师马岩松于1987年建立，是一所以东方自然体验为基础和出发点进行设计的国际建筑事务所。近年围绕“山水城市”这一核心设计哲学，MAD期望通过创新建筑创造社会和人们之间的平衡年，通过竞赛赢得卢卡斯叙事艺术博物馆设计权
+              ...
+            </p>
+            <p class="info-more">
+              <a href="www.baidu.com">MORE</a>
+            </p>
+          </div>
+        </div>
+        <div class="about-img">
+          <img src="../assets/images/home_about.jpg" alt="" srcset="" />
+        </div>
+      </div>
+
+      <div>
+        <div></div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -43,17 +70,21 @@
 import Swiper from "swiper";
 const imagesList = [
   {
+    index: 0,
     path: require("assets/images/home_bg.jpg")
   },
   {
+    index: 1,
     path:
       "http://www.neofarmer.cn/wp-content/themes/neo/src/images/bannerpic/b_00.jpg"
   },
   {
+    index: 2,
     path:
       "http://www.neofarmer.cn/wp-content/themes/neo/src/images/bannerpic/b_00.jpg"
   },
   {
+    index: 3,
     path:
       "http://www.neofarmer.cn/wp-content/themes/neo/src/images/bannerpic/b_00.jpg"
   }
@@ -96,6 +127,7 @@ export default {
   position: relative;
   width: 100%;
   height: 550px;
+  text-align: center;
 
   .swiper-container {
     width: 100%;
@@ -154,6 +186,118 @@ export default {
     }
     .thumbs4 {
       background-color: #ff6e73;
+    }
+  }
+}
+.home {
+  .main {
+    max-width: 1171px;
+    min-width: 1171px;
+    margin: 0 auto;
+    padding: 77px 0 80px 0;
+
+    .about {
+      overflow: hidden;
+      .about-info {
+        display: inline-block;
+        text-align: left;
+        width: 608px;
+        .about-info-title {
+          margin-bottom: 90px;
+          .info-main {
+            font-size: 24px;
+            color: #038a03;
+            line-height: 1;
+          }
+          .info-tips {
+            font-size: 14px;
+            color: #8d8c8c;
+          }
+        }
+        .about-info-content {
+          .info-main {
+            font-size: 18px;
+            color: #3f3f3f;
+            margin-bottom: 36px;
+          }
+          .info-tips {
+            font-size: 14px;
+            color: #5f5e5e;
+          }
+        }
+        .info-more {
+          a {
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            margin-top: 48px;
+            width: 150px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            font-size: 14px;
+            border: 1px solid #d7d7d7;
+            box-sizing: border-box;
+            background: 0 0;
+            transition: all 0.36s ease;
+            &::before {
+              content: "";
+              position: absolute;
+              height: 100%;
+              width: 0;
+              left: 0;
+              top: 0;
+              z-index: -1;
+              background: #038a03;
+              transition: all 0.36s ease;
+            }
+            &::after {
+              content: "";
+              content: "\e909";
+              transition: all 0.36s ease;
+              font-family: icomoon;
+              // speak: none;
+              font-style: normal;
+              font-weight: 400;
+              font-variant: normal;
+              text-transform: none;
+              line-height: 1;
+              -webkit-font-smoothing: antialiased;
+              position: absolute;
+              left: 50%;
+              color: transparent;
+              line-height: 40px;
+            }
+            &:hover {
+              border-color: #038a03;
+              color: #fff;
+
+              padding-right: 20px;
+              &::before {
+                width: 100%;
+              }
+              &::after {
+                color: #fff;
+                left: 64%;
+              }
+            }
+          }
+        }
+      }
+
+      .about-img {
+        float: right;
+        margin-top: 27px;
+        padding: 7px;
+        background-color: #f8f8f8;
+
+        img {
+          width: 390px;
+          height: 250px;
+          background: #feffff;
+          padding: 5px;
+        }
+      }
     }
   }
 }
