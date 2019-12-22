@@ -8,48 +8,73 @@
           <span>introdution</span>
         </div>
         <div class="intro-container-text">
-          <span>您的位置：首页 > 新闻媒体</span>
+          <span>您的位置：</span><span @click="routerTo('/home')">首页</span> > <span @click="routerTo('/media')">新闻媒体</span><span v-show="id"> > 详情</span>
         </div>
       </div>
       <div class="intro-container-box">
         <tabs transitionName="fade">
-          <tab :title="'公司活动'">
-            <ul class="media-ul">
-              <li>
-                <dl>
+          <tab :title="'公司活动'" @change="isShowDetail = true">
+            <ul class="media-ul" v-show="!isShowDetail">
+              <li v-for="item in listData">
+                <dl @click="routerTo('/media',{id: 2222})">
                   <dt>
-                    <img src="http://www.neofarmer.cn/wp-content/themes/neo/src/images/bannerpic/b_00.jpg" alt="" />
+                    <img :src="item.img" alt="" />
                   </dt>
                   <dd>
-                    <span>李克强对“华龙一号” 福清核电五号机组建设工作 作出重要批示</span>
-                    <span>12-06</span>
-                    <span>李克强对“华龙一号”福清核电5号机组建设工作 作出重要批示 12-06 中共中央政治局常委、国务院总理李克强日前对“华龙一号”</span>
+                    <span>{{item.title}}</span>
+                    <span>{{item.date}}</span>
+                    <span>{{item.text}}</span>
                     <span>详情</span>
                   </dd>
                 </dl>
               </li>
-              <li>
+            </ul>
+            <div v-show="isShowDetail">
+              <span class="tab-title">公司简介</span>
+              <p>
+                PH是一种布宜诺斯艾利斯典型的住宅类型，这种住宅以高密度和低楼层著称。 项目是一个长期规划的收尾性空间，PH Lavallej
+              </p>
+              <p>
+                中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。
+              </p>
+              <p>
+                中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。
+              </p>
+            </div>
+          </tab>
+          <tab :title="'企业快讯'">
+            <ul class="media-ul">
+              <li v-for="item in listData1">
                 <dl>
                   <dt>
-                    <img src="http://www.neofarmer.cn/wp-content/themes/neo/src/images/bannerpic/b_00.jpg" alt="" />
+                    <img :src="item.img" alt="" />
                   </dt>
                   <dd>
-                    <span>李克强对“华龙一号” 福清核电五号机组建设工作 作出重要批示</span>
-                    <span>12-06</span>
-                    <span>李克强对“华龙一号”福清核电5号机组建设工作 作出重要批示 12-06 中共中央政治局常委、国务院总理李克强日前对“华龙一号”</span>
+                    <span>{{item.title}}</span>
+                    <span>{{item.date}}</span>
+                    <span>{{item.text}}</span>
                     <span>详情</span>
                   </dd>
                 </dl>
               </li>
             </ul>
           </tab>
-          <tab :title="'企业快讯'">
-            <span>企业快讯</span>
-            <p class="tab-text">基金将通过竞赛、评选、成果转化、奖励等办法，培养一批创新人才，培育一批创新成果，树立一批创新典型，倡导创新文化，引导青年树立自主创新意识，提高自主创新能力</p>
-          </tab>
           <tab :title="'媒体报道'">
-            <span>媒体报道</span>
-            <p class="tab-text">投身创业创新实践；通过项目竞赛、贴息贷款、导师带徒等办法，改变青年就业观念该基金理事会将每年定期组织开展“创业浙江”大赛，评选产生的创新奖获得者将得到一定金额的奖励主要提供农业实用技术和来料加工业务指导，重点鼓励发展现代农业</p>
+            <ul class="media-ul">
+              <li v-for="item in listData2">
+                <dl>
+                  <dt>
+                    <img :src="item.img" alt="" />
+                  </dt>
+                  <dd>
+                    <span>{{item.title}}</span>
+                    <span>{{item.date}}</span>
+                    <span>{{item.text}}</span>
+                    <span>详情</span>
+                  </dd>
+                </dl>
+              </li>
+            </ul>
           </tab>
         </tabs>
       </div>
@@ -67,11 +92,101 @@ export default {
   },
   data: function() {
     return {
-      galleryThumbs: null,
-      galleryTop: null
+      id: null,
+      isShowDetail: false,
+      listData: [
+        {
+          img: "http://www.neofarmer.cn/wp-content/themes/neo/src/images/bannerpic/b_00.jpg",
+          title: "李克强对“华龙一号” 福清核电五号机组建设工作 作出重要批示",
+          date: "12-06",
+          text: "李克强对“华龙一号”福清核电5号机组建设工作 作出重要批示 12-06 中共中央政治局常委、国务院总理李克强日前对“华龙一号”"
+        },
+        {
+          img: "http://www.neofarmer.cn/wp-content/themes/neo/src/images/bannerpic/b_00.jpg",
+          title: "李克强对“华龙一号” 福清核电五号机组建设工作 作出重要批示",
+          date: "12-06",
+          text: "李克强对“华龙一号”福清核电5号机组建设工作 作出重要批示 12-06 中共中央政治局常委、国务院总理李克强日前对“华龙一号”"
+        },
+        {
+          img: "http://www.neofarmer.cn/wp-content/themes/neo/src/images/bannerpic/b_00.jpg",
+          title: "李克强对“华龙一号” 福清核电五号机组建设工作 作出重要批示",
+          date: "12-06",
+          text: "李克强对“华龙一号”福清核电5号机组建设工作 作出重要批示 12-06 中共中央政治局常委、国务院总理李克强日前对“华龙一号”"
+        },
+        {
+          img: "http://www.neofarmer.cn/wp-content/themes/neo/src/images/bannerpic/b_00.jpg",
+          title: "李克强对“华龙一号” 福清核电五号机组建设工作 作出重要批示",
+          date: "12-06",
+          text: "李克强对“华龙一号”福清核电5号机组建设工作 作出重要批示 12-06 中共中央政治局常委、国务院总理李克强日前对“华龙一号”"
+        },
+        {
+          img: "http://www.neofarmer.cn/wp-content/themes/neo/src/images/bannerpic/b_00.jpg",
+          title: "李克强对“华龙一号” 福清核电五号机组建设工作 作出重要批示",
+          date: "12-06",
+          text: "李克强对“华龙一号”福清核电5号机组建设工作 作出重要批示 12-06 中共中央政治局常委、国务院总理李克强日前对“华龙一号”"
+        }
+      ],
+      listData1: [
+        {
+          img: "http://www.neofarmer.cn/wp-content/themes/neo/src/images/bannerpic/b_00.jpg",
+          title: "李克强对“华龙一号” 福清核电五号机组建设工作 作出重要批示",
+          date: "12-06",
+          text: "李克强对“华龙一号”福清核电5号机组建设工作 作出重要批示 12-06 中共中央政治局常委、国务院总理李克强日前对“华龙一号”"
+        },
+        {
+          img: "http://www.neofarmer.cn/wp-content/themes/neo/src/images/bannerpic/b_00.jpg",
+          title: "李克强对“华龙一号” 福清核电五号机组建设工作 作出重要批示",
+          date: "12-06",
+          text: "李克强对“华龙一号”福清核电5号机组建设工作 作出重要批示 12-06 中共中央政治局常委、国务院总理李克强日前对“华龙一号”"
+        }
+      ],
+      listData2: [
+        {
+          img: "http://www.neofarmer.cn/wp-content/themes/neo/src/images/bannerpic/b_00.jpg",
+          title: "李克强对“华龙一号” 福清核电五号机组建设工作 作出重要批示",
+          date: "12-06",
+          text: "李克强对“华龙一号”福清核电5号机组建设工作 作出重要批示 12-06 中共中央政治局常委、国务院总理李克强日前对“华龙一号”"
+        }
+      ],
     };
   },
-  mounted() {}
+  watch: {
+    $route() {
+      this.id= this.$route.query.id; //获取传来的参数 
+      this.showDetail()
+		}
+  },
+  methods: {
+    routerTo(url, queryObj) {
+      this.$router.push({
+        path: url,
+        query: queryObj
+      });
+    },
+    goDetail() {
+      this.$router.push({
+        path: "/media",
+        name: `media`,
+        query: {
+          id: 8989
+        }
+      })
+    },
+    showDetail() {
+      if (this.id) {
+        this.isShowDetail = true;
+      }
+      else {
+        this.isShowDetail = false;
+      }
+    }
+  },
+  created() {
+    // this.id = this.$route.params.id
+  },
+  mounted() {
+
+  }
 };
 </script>
 <style lang="less">
@@ -82,7 +197,8 @@ export default {
     background: seagreen;
   }
   .intro-container {
-    padding: 0 90px;
+    max-width: 1171px;
+    margin: 0 auto;
     .intro-container-header {
       width: 100%;
       margin: 60px 0;
@@ -113,7 +229,38 @@ export default {
       }
     }
     .intro-container-box {
-      height: 700px;
+      margin-bottom: 100px;
+      .media-ul {
+        li {
+          list-style: none;
+          border-bottom: solid 1px #c3c3c3;
+          &:last-child {
+            border: none;
+          }
+          dl {
+            display: flex;
+            dt {
+              width: 342px;
+              height: 143px;
+              img {
+                width: 100%;
+                height: 100%;
+              }
+            }
+            dd {
+              flex: 1;
+              margin-left: 33px;
+              span {
+                display: block;
+                font-size: 14px;
+                line-height: 20px;
+                text-align: left;
+                color: #8d8c8c;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -122,8 +269,9 @@ export default {
 }
 
 .vue-tabs__nav {
+  width: 100px;
   background: transparent;
-  margin-right: 150px;
+  margin-right: 11%;
   display: flex;
   flex-direction: column;
   align-items: baseline;
@@ -152,42 +300,18 @@ export default {
 
 .vue-tabs__panel-container {
   width: 920px;
-  span {
+  flex: 6;
+  color: #535353;
+  .tab-title {
     font-size: 18px;
     line-height: 100px;
+    text-align: center;
+    display: block;
   }
   p {
     font-size: 14px;
     line-height: 30px;
     text-align: left;
-  }
-}
-.media-ul {
-  li {
-    list-style: none;
-    border-bottom: solid 1px #c3c3c3;
-    dl {
-      display: flex;
-      dt {
-        width: 342px;
-        height: 143px;
-        img {
-          width: 100%;
-          height: 100%;
-        }
-      }
-      dd {
-        flex: 1;
-        margin-left: 33px;
-        span {
-          display: block;
-          font-size: 14px;
-          line-height: 20px;
-          text-align: left;
-          color: #8d8c8c;
-        }
-      }
-    }
   }
 }
 </style>

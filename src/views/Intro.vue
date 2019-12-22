@@ -93,7 +93,8 @@ export default {
     background: seagreen;
   }
   .intro-container {
-    padding: 0 90px;
+    max-width: 1171px;
+    margin: 0 auto;
     .intro-container-header {
       width: 100%;
       margin: 60px 0;
@@ -124,7 +125,7 @@ export default {
       }
     }
     .intro-container-box {
-      height: 700px;
+      height: 800px;
     }
   }
 }
@@ -134,7 +135,7 @@ export default {
 
 .vue-tabs__nav {
   background: transparent;
-  margin-right: 150px;
+  margin-right: 11%;
   display: flex;
   flex-direction: column;
   align-items: baseline;
@@ -163,9 +164,12 @@ export default {
 
 .vue-tabs__panel-container {
   width: 920px;
+  color: #535353;
   span {
     font-size: 18px;
-    line-height: 100px;
+    line-height: 80px;
+    text-align: center;
+    display: block;
   }
   p {
     font-size: 14px;
