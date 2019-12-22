@@ -96,7 +96,7 @@ export default {
     padding: 0 90px;
     .intro-container-header {
       width: 100%;
-      margin-bottom: 30px;
+      margin: 60px 0;
       overflow: hidden;
       .intro-container-title {
         width: 164px;
@@ -133,6 +133,7 @@ export default {
 }
 
 .vue-tabs__nav {
+  background: transparent;
   margin-right: 150px;
   display: flex;
   flex-direction: column;
@@ -162,7 +163,7 @@ export default {
 
 .vue-tabs__panel-container {
   width: 920px;
-  .tab-title {
+  span {
     font-size: 18px;
     line-height: 100px;
   }

@@ -34,6 +34,11 @@ const routes = [
     path: "/ecology",
     name: "ecology",
     component: () => import("../views/Ecology.vue")
+  },
+  {
+    path: "/media",
+    name: "media",
+    component: () => import("../views/Media.vue")
   }
 ];
 
