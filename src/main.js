@@ -11,6 +11,7 @@ import "swiper/css/swiper.min.css"; //css样式
 import "./assets/fonts/font.module.less";
 
 Vue.config.productionTip = false;
+Vue.prototype.$EventBus = new Vue();
 
 new Vue({
   router,

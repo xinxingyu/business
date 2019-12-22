@@ -18,12 +18,22 @@
               <li>
                 <dl>
                   <dt>
-                    <img src="http://www.neofarmer.cn/wp-content/themes/neo/src/images/bannerpic/b_00.jpg" alt="" />
+                    <img
+                      src="http://www.neofarmer.cn/wp-content/themes/neo/src/images/bannerpic/b_00.jpg"
+                      alt=""
+                    />
                   </dt>
                   <dd>
-                    <span>李克强对“华龙一号” 福清核电五号机组建设工作 作出重要批示</span>
+                    <span
+                      >李克强对“华龙一号” 福清核电五号机组建设工作
+                      作出重要批示</span
+                    >
                     <span>12-06</span>
-                    <span>李克强对“华龙一号”福清核电5号机组建设工作 作出重要批示 12-06 中共中央政治局常委、国务院总理李克强日前对“华龙一号”</span>
+                    <span
+                      >李克强对“华龙一号”福清核电5号机组建设工作 作出重要批示
+                      12-06
+                      中共中央政治局常委、国务院总理李克强日前对“华龙一号”</span
+                    >
                     <span>详情</span>
                   </dd>
                 </dl>
@@ -31,12 +41,22 @@
               <li>
                 <dl>
                   <dt>
-                    <img src="http://www.neofarmer.cn/wp-content/themes/neo/src/images/bannerpic/b_00.jpg" alt="" />
+                    <img
+                      src="http://www.neofarmer.cn/wp-content/themes/neo/src/images/bannerpic/b_00.jpg"
+                      alt=""
+                    />
                   </dt>
                   <dd>
-                    <span>李克强对“华龙一号” 福清核电五号机组建设工作 作出重要批示</span>
+                    <span
+                      >李克强对“华龙一号” 福清核电五号机组建设工作
+                      作出重要批示</span
+                    >
                     <span>12-06</span>
-                    <span>李克强对“华龙一号”福清核电5号机组建设工作 作出重要批示 12-06 中共中央政治局常委、国务院总理李克强日前对“华龙一号”</span>
+                    <span
+                      >李克强对“华龙一号”福清核电5号机组建设工作 作出重要批示
+                      12-06
+                      中共中央政治局常委、国务院总理李克强日前对“华龙一号”</span
+                    >
                     <span>详情</span>
                   </dd>
                 </dl>
@@ -45,11 +65,15 @@
           </tab>
           <tab :title="'企业快讯'">
             <span>企业快讯</span>
-            <p class="tab-text">基金将通过竞赛、评选、成果转化、奖励等办法，培养一批创新人才，培育一批创新成果，树立一批创新典型，倡导创新文化，引导青年树立自主创新意识，提高自主创新能力</p>
+            <p class="tab-text">
+              基金将通过竞赛、评选、成果转化、奖励等办法，培养一批创新人才，培育一批创新成果，树立一批创新典型，倡导创新文化，引导青年树立自主创新意识，提高自主创新能力
+            </p>
           </tab>
           <tab :title="'媒体报道'">
             <span>媒体报道</span>
-            <p class="tab-text">投身创业创新实践；通过项目竞赛、贴息贷款、导师带徒等办法，改变青年就业观念该基金理事会将每年定期组织开展“创业浙江”大赛，评选产生的创新奖获得者将得到一定金额的奖励主要提供农业实用技术和来料加工业务指导，重点鼓励发展现代农业</p>
+            <p class="tab-text">
+              投身创业创新实践；通过项目竞赛、贴息贷款、导师带徒等办法，改变青年就业观念该基金理事会将每年定期组织开展“创业浙江”大赛，评选产生的创新奖获得者将得到一定金额的奖励主要提供农业实用技术和来料加工业务指导，重点鼓励发展现代农业
+            </p>
           </tab>
         </tabs>
       </div>

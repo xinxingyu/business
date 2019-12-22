@@ -853,4 +853,25 @@ export default {
     }
   }
 }
+// 兼容
+
+@media screen and (max-width: 420px) {
+  .swiper-warper {
+    height: 280px;
+    .gallery-thumbs {
+      height: 180px;
+
+      .swiper-silider {
+        // height: 20px;
+        padding-top: 0;
+        .thumbs-title {
+          font-size: 16px;
+        }
+        .thumbs-eng {
+          font-size: 10px;
+        }
+      }
+    }
+  }
+}
 </style>
