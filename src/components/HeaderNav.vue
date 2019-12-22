@@ -20,11 +20,11 @@ const NAVLIST = [
   },
   {
     name: "产品服务",
-    link: "intro"
+    link: "product"
   },
   {
     name: "生态基地",
-    link: "intro"
+    link: "ecology"
   },
   {
     name: "新闻媒体",

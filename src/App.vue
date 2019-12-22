@@ -21,8 +21,6 @@ export default {
 </script>
 
 <style lang="less">
-// @import "assets/fonts/font.less";
-
 #app {
   // font-family: "Avenir", Helvetica, Arial, sans-serif;
   // -webkit-font-smoothing: antialiased;
@@ -45,10 +43,15 @@ ul {
 }
 li {
   display: inline-block;
-  margin: 0 10px;
 }
 a {
   color: #999;
   text-decoration: none;
+}
+
+.center {
+  max-width: 1171px;
+  min-width: 1171px;
+  margin: 0 auto;
 }
 </style>
