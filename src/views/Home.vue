@@ -348,8 +348,10 @@ export default {
       currentTab: 1
     };
   },
+  inject: ["isMobile"],
   mounted() {
     this.galleryThumbs = new Swiper(".gallery-thumbs", {
+      allowTouchMove: !this.isMobile,
       direction: "vertical",
       spaceBetween: 0,
       slidesPerView: 4,
@@ -854,21 +856,44 @@ export default {
   }
 }
 // 兼容
-
-@media screen and (max-width: 420px) {
+// @media screen and (max-width: 420px) {
+@media screen and (max-width: 1070px) {
   .swiper-warper {
-    height: 280px;
+    height: auto;
+    .gallery-top {
+      height: 280px;
+    }
     .gallery-thumbs {
-      height: 180px;
-
-      .swiper-silider {
-        // height: 20px;
-        padding-top: 0;
-        .thumbs-title {
-          font-size: 16px;
+      width: 100%;
+      position: relative;
+      top: 0;
+      right: 0;
+      transform: translate(0, 0);
+    }
+  }
+  .home {
+    .main {
+      // padding: 60px 0 20px 0;
+      .about {
+        width: 90%;
+        max-width: 90%;
+        min-width: 90%;
+        .about-info {
+          display: block;
+          width: 100%;
+          .about-info-title {
+            margin-bottom: 20px;
+          }
         }
-        .thumbs-eng {
-          font-size: 10px;
+        .about-img {
+          float: none;
+        }
+      }
+      .intro {
+        .intro-wrapper {
+          width: 90%;
+          max-width: 90%;
+          min-width: 90%;
         }
       }
     }
