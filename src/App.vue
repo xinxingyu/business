@@ -21,16 +21,18 @@ export default {
 </script>
 
 <style lang="less">
+// @import "assets/fonts/font.less";
+
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  // font-family: "Avenir", Helvetica, Arial, sans-serif;
+  // -webkit-font-smoothing: antialiased;
+  // -moz-osx-font-smoothing: grayscale;
+  // text-align: center;
 }
 body {
   margin: 0 auto;
   padding: 0;
+  font: 16px Arial, "微软雅黑";
 }
 ul,
 li,
@@ -46,6 +48,7 @@ li {
   margin: 0 10px;
 }
 a {
+  color: #999;
   text-decoration: none;
 }
 </style>

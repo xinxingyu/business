@@ -51,6 +51,7 @@ export default {
 
 <style lang="less">
 .header-nav {
+  text-align: center;
   float: right;
   height: 88px;
   font-size: 16rpx;
