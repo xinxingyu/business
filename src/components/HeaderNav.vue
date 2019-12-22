@@ -28,7 +28,7 @@ const NAVLIST = [
   },
   {
     name: "新闻媒体",
-    link: "intro"
+    link: "media"
   },
   {
     name: "联系我们",
