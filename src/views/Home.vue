@@ -62,9 +62,6 @@
       </AnimateBox>
 
       <!-- 产品系列、运营板块 -->
-      <!-- <AnimateBox>
-      </AnimateBox> -->
-
       <div class="intro">
         <div class="intro-wrapper">
           <div class="tab">
