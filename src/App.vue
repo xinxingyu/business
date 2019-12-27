@@ -97,7 +97,24 @@ a {
   transform: translate3d(0, 0, 0);
   transition: transform 0.25s ease 0s;
 }
+.fadeInUp {
+  visibility: visible;
+  animation: fadeInUp 1.2s ease-out forwards;
+}
 
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(15%);
+    transform: translateY(15%);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
 // 兼容
 html,
 body,
