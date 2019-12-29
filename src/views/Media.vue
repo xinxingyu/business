@@ -37,10 +37,7 @@
           </div>
         </div>
         <div class="content">
-          <div
-            v-show="currentTab === 1"
-            class="swiper-container"
-          >
+          <div v-show="currentTab === 1">
             <ul class="media-ul" v-show="!isShowDetail">
               <li v-for="item in listData">
                 <dl @click="routerTo('/media',{id: 2222})">
@@ -68,7 +65,65 @@
                 中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。
               </p>
             </div>
-          </div>      
+          </div>
+          <div v-show="currentTab === 2">
+            <ul class="media-ul" v-show="!isShowDetail">
+              <li v-for="item in listData1">
+                <dl @click="routerTo('/media',{id: 2222})">
+                  <dt>
+                    <img :src="item.img" alt="" />
+                  </dt>
+                  <dd>
+                    <span>{{item.title}}</span>
+                    <span>{{item.date}}</span>
+                    <span>{{item.text}}</span>
+                    <span>详情</span>
+                  </dd>
+                </dl>
+              </li>
+            </ul>
+            <div class="media-detail" v-show="isShowDetail">
+              <span class="tab-title">公司简介</span>
+              <p>
+                PH是一种布宜诺斯艾利斯典型的住宅类型，这种住宅以高密度和低楼层著称。 项目是一个长期规划的收尾性空间，PH Lavallej
+              </p>
+              <p>
+                中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。
+              </p>
+              <p>
+                中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。
+              </p>
+            </div>
+          </div>
+          <div v-show="currentTab === 3">
+            <ul class="media-ul" v-show="!isShowDetail">
+              <li v-for="item in listData2">
+                <dl @click="routerTo('/media',{id: 2222})">
+                  <dt>
+                    <img :src="item.img" alt="" />
+                  </dt>
+                  <dd>
+                    <span>{{item.title}}</span>
+                    <span>{{item.date}}</span>
+                    <span>{{item.text}}</span>
+                    <span>详情</span>
+                  </dd>
+                </dl>
+              </li>
+            </ul>
+            <div class="media-detail" v-show="isShowDetail">
+              <span class="tab-title">公司简介</span>
+              <p>
+                PH是一种布宜诺斯艾利斯典型的住宅类型，这种住宅以高密度和低楼层著称。 项目是一个长期规划的收尾性空间，PH Lavallej
+              </p>
+              <p>
+                中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。
+              </p>
+              <p>
+                中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -228,9 +283,6 @@ export default {
     .intro-container-box {
       margin-bottom: 100px;
       display: flex;
-      .tab {
-        margin-bottom: 36px;
-      }
       .tab-item {
         line-height: 1;
         display: block;
@@ -252,7 +304,6 @@ export default {
       }
       .content {
         flex: 1;
-        height: 340px;
         .media-ul {
           li {
             list-style: none;
