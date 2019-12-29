@@ -11,9 +11,11 @@
     <div class="content center">
       <p class="ct-title">有机食材</p>
       <ul class="ct-list">
-        <li v-for="item in foodList" v-bind:key="item.id">
-          <img :src="item.img" alt="" />
-          <p class="ct-list-item-p">{{ item.name }}</p>
+        <li v-for="(item, index) in foodList" v-bind:key="item.id">
+          <AnimateBox :delayTime="index + 1" style="display: inline-block;">
+            <img :src="item.img" alt="" />
+            <p class="ct-list-item-p">{{ item.name }}</p>
+          </AnimateBox>
         </li>
       </ul>
       <div class="more">
@@ -46,6 +48,8 @@
 </template>
 
 <script>
+import AnimateBox from "components/AnimateBox.vue";
+
 const headerBg = require("assets/images/home_bg.jpg");
 const foodList = [
   {
@@ -81,12 +85,25 @@ const foodList = [
 ];
 export default {
   name: "product",
-  components: {},
+  components: { AnimateBox },
   data: function() {
     return { foodList, headerBg };
   },
   mounted() {},
-  methods: {}
+  methods: {
+    getIndex(item) {
+      if (item / 4 <= 1) {
+        return item - 1;
+      } else {
+        const yu = (item / 4).toString().split(".");
+        if (!yu[1]) return 0;
+
+        const mall = yu[1];
+        console.log(mall.length);
+        return (mall / Math.pow(10, mall.length)) * 4;
+      }
+    }
+  }
 };
 </script>
 <style lang="less" scoped>

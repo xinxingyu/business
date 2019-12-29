@@ -37,27 +37,29 @@
       </div>
     </div>
     <div class="main">
-      <div class="about">
-        <div class="about-info">
-          <div class="about-info-title">
-            <p class="info-main">关于我们</p>
-            <p class="info-tips">About us</p>
+      <AnimateBox>
+        <div class="about">
+          <div class="about-info">
+            <div class="about-info-title">
+              <p class="info-main">关于我们</p>
+              <p class="info-tips">About us</p>
+            </div>
+            <div class="about-info-content">
+              <p class="info-main">中泰高科控股集团股份有限公司</p>
+              <p class="info-tips">
+                集团由中国知名金融师马岩松于1987年建立，是一所以东方自然体验为基础和出发点进行设计的国际建筑事务所。近年围绕“山水城市”这一核心设计哲学，MAD期望通过创新建筑创造社会和人们之间的平衡年，通过竞赛赢得卢卡斯叙事艺术博物馆设计权
+                ...
+              </p>
+              <p class="info-more">
+                <a href="www.baidu.com">MORE</a>
+              </p>
+            </div>
           </div>
-          <div class="about-info-content">
-            <p class="info-main">中泰高科控股集团股份有限公司</p>
-            <p class="info-tips">
-              集团由中国知名金融师马岩松于1987年建立，是一所以东方自然体验为基础和出发点进行设计的国际建筑事务所。近年围绕“山水城市”这一核心设计哲学，MAD期望通过创新建筑创造社会和人们之间的平衡年，通过竞赛赢得卢卡斯叙事艺术博物馆设计权
-              ...
-            </p>
-            <p class="info-more">
-              <a href="www.baidu.com">MORE</a>
-            </p>
+          <div class="about-img">
+            <img src="../assets/images/home/home_about.jpg" alt="" srcset="" />
           </div>
         </div>
-        <div class="about-img">
-          <img src="../assets/images/home/home_about.jpg" alt="" srcset="" />
-        </div>
-      </div>
+      </AnimateBox>
 
       <!-- 产品系列、运营板块 -->
       <div class="intro">
@@ -90,16 +92,21 @@
                   <a
                     href="#"
                     class="slide-item"
-                    v-for="item in IntroContentList1"
+                    v-for="(item, index) in IntroContentList1"
                     v-bind:key="item.id"
                   >
-                    <div class="item-img">
-                      <img :src="item.imgPath" alt="" srcset="" />
-                    </div>
-                    <div class="item-wrapper">
-                      <p class="item-wrap-title">{{ item.title }}</p>
-                      <p class="item-wrap-tips">{{ item.tips }}</p>
-                    </div>
+                    <AnimateBox
+                      :delayTime="index + 1"
+                      style="display: inline-block;"
+                    >
+                      <div class="item-img">
+                        <img :src="item.imgPath" alt="" srcset="" />
+                      </div>
+                      <div class="item-wrapper">
+                        <p class="item-wrap-title">{{ item.title }}</p>
+                        <p class="item-wrap-tips">{{ item.tips }}</p>
+                      </div>
+                    </AnimateBox>
                   </a>
                 </div>
                 <div class="swiper-slide">
@@ -175,51 +182,63 @@
       </div>
 
       <!-- 生态基地 -->
-      <div class="ecologic center">
-        <div class="ecologic-wrap">
-          <div class="ew-info">
-            <div class="ew-info-title">
-              <p>生态基地</p>
-              <span>production base</span>
+      <AnimateBox>
+        <div class="ecologic center">
+          <div class="ecologic-wrap">
+            <div class="ew-info">
+              <div class="ew-info-title">
+                <p>生态基地</p>
+                <span>production base</span>
+              </div>
+              <p class="ew-info-content">
+                中国时代远望科技有限公司成立于2003年11月，是中国航天时代电子公司的全
+                资子公司。2003年6月，中国航天时代电子公司（简称时代电子公司）成立，为整合系统资源，增强名用产品市场竞争力，将航天一院的愿望科技集团公司及其所属企业所属公司...
+              </p>
             </div>
-            <p class="ew-info-content">
-              中国时代远望科技有限公司成立于2003年11月，是中国航天时代电子公司的全
-              资子公司。2003年6月，中国航天时代电子公司（简称时代电子公司）成立，为整合系统资源，增强名用产品市场竞争力，将航天一院的愿望科技集团公司及其所属企业所属公司...
-            </p>
-          </div>
-          <div class="ew-img">
-            <img src="../assets/images/home/home_ew.jpg" alt="" />
+            <div class="ew-img">
+              <img src="../assets/images/home/home_ew.jpg" alt="" />
+            </div>
           </div>
         </div>
-      </div>
+      </AnimateBox>
 
-      <div class="media center">
-        <div class="media-wrap">
-          <div class="mw-top">
-            <div class="mw-top-title">
-              <p>新闻媒体</p>
-              <span>News media</span>
+      <AnimateBox>
+        <div class="media center">
+          <div class="media-wrap">
+            <div class="mw-top">
+              <div class="mw-top-title">
+                <p>新闻媒体</p>
+                <span>News media</span>
+              </div>
+              <ul class="mw-top-list">
+                <li v-for="media in MediaList" v-bind:key="media.name">
+                  {{ media.name }}
+                </li>
+              </ul>
             </div>
-            <ul class="mw-top-list">
-              <li v-for="media in MediaList" v-bind:key="media.name">
-                {{ media.name }}
-              </li>
-            </ul>
-          </div>
-          <div class="mw-content">
-            <ul class="mw-ct-list">
-              <li v-for="media in MediaContentList" v-bind:key="media.id">
-                <img class="list-img" :src="media.img" alt="" srcset="" />
-                <div class="list-content">
-                  <p class="title">{{ media.title }}</p>
-                  <p class="content">{{ media.content }}</p>
-                </div>
-                <div class="list-more">more</div>
-              </li>
-            </ul>
+            <div class="mw-content">
+              <ul class="mw-ct-list">
+                <li
+                  v-for="(media, index) in MediaContentList"
+                  v-bind:key="media.id"
+                >
+                  <AnimateBox
+                    :delayTime="index + 1"
+                    style="display: inline-block;"
+                  >
+                    <img class="list-img" :src="media.img" alt="" srcset="" />
+                    <div class="list-content">
+                      <p class="title">{{ media.title }}</p>
+                      <p class="content">{{ media.content }}</p>
+                    </div>
+                    <div class="list-more">more</div>
+                  </AnimateBox>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
+      </AnimateBox>
 
       <div class="more">
         <a href="">MORE</a>
@@ -230,6 +249,7 @@
 
 <script>
 import Swiper from "swiper";
+import AnimateBox from "components/AnimateBox.vue";
 
 const imagesList = [
   {
@@ -333,7 +353,7 @@ const MediaContentList = [
 
 export default {
   name: "home",
-  components: {},
+  components: { AnimateBox },
   data: function() {
     return {
       imagesList,
@@ -348,8 +368,10 @@ export default {
       currentTab: 1
     };
   },
+  inject: ["isMobile"],
   mounted() {
     this.galleryThumbs = new Swiper(".gallery-thumbs", {
+      allowTouchMove: !this.isMobile,
       direction: "vertical",
       spaceBetween: 0,
       slidesPerView: 4,
@@ -643,6 +665,7 @@ export default {
           position: relative;
           margin-right: 10px;
           transition: all 0.36s ease;
+          display: inline-block;
           // animation-delay: 0s;
           // visibility: visible;
           // animation-name: fadeInUp;
@@ -854,21 +877,44 @@ export default {
   }
 }
 // 兼容
-
-@media screen and (max-width: 420px) {
+// @media screen and (max-width: 420px) {
+@media screen and (max-width: 1070px) {
   .swiper-warper {
-    height: 280px;
+    height: auto;
+    .gallery-top {
+      height: 280px;
+    }
     .gallery-thumbs {
-      height: 180px;
-
-      .swiper-silider {
-        // height: 20px;
-        padding-top: 0;
-        .thumbs-title {
-          font-size: 16px;
+      width: 100%;
+      position: relative;
+      top: 0;
+      right: 0;
+      transform: translate(0, 0);
+    }
+  }
+  .home {
+    .main {
+      // padding: 60px 0 20px 0;
+      .about {
+        width: 90%;
+        max-width: 90%;
+        min-width: 90%;
+        .about-info {
+          display: block;
+          width: 100%;
+          .about-info-title {
+            margin-bottom: 20px;
+          }
         }
-        .thumbs-eng {
-          font-size: 10px;
+        .about-img {
+          float: none;
+        }
+      }
+      .intro {
+        .intro-wrapper {
+          width: 90%;
+          max-width: 90%;
+          min-width: 90%;
         }
       }
     }
