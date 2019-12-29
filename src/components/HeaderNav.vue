@@ -1,11 +1,16 @@
 <template>
-  <ul class="header-nav nav-container">
-    <li class="nav-li" v-for="item in navList" v-bind:key="item.name">
-      <router-link class="nav-li-router" :to="{ path: item.link }">{{
-        item.name
-      }}</router-link>
-    </li>
-  </ul>
+  <div class="header-nav-component">
+    <div class="header-logo">
+      <img src="../assets/logo.png" alt="" srcset="" />
+    </div>
+    <ul class="header-nav nav-container">
+      <li class="nav-li" v-for="item in navList" v-bind:key="item.name">
+        <router-link class="nav-li-router" :to="{ path: item.link }">{{
+          item.name
+        }}</router-link>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -50,6 +55,26 @@ export default {
 </script>
 
 <style lang="less">
+.header-nav-component {
+  position: relative;
+  // width: 100%;
+  height: 88px;
+  max-width: 1171px;
+  margin: 0 auto;
+  // text-align: left;
+
+  .header-logo {
+    width: 244px;
+    height: 59px;
+
+    display: block;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+}
 .header-nav {
   text-align: center;
   float: right;

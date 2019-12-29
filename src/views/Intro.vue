@@ -155,6 +155,7 @@ export default {
 }
 
 .vue-tabs__panel {
+  width: 920px;
   outline: none;
 }
 
@@ -163,7 +164,6 @@ export default {
 }
 
 .vue-tabs__panel-container {
-  width: 920px;
   color: #535353;
   span {
     font-size: 18px;

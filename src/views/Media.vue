@@ -8,12 +8,39 @@
           <span>introdution</span>
         </div>
         <div class="intro-container-text">
-          <span>您的位置：</span><span @click="routerTo('/home')">首页</span> > <span @click="routerTo('/media')">新闻媒体</span><span v-show="id"> > 详情</span>
+          <span>您的位置：</span><span @click="routerTo('/home')">首页</span> >
+           <span @click="routerTo('/media')"> 新闻媒体 </span>
+           <span v-show="id"> > 详情</span>
         </div>
       </div>
       <div class="intro-container-box">
-        <tabs transitionName="fade">
-          <tab :title="'公司活动'" @change="isShowDetail = true">
+        <div class="tab">
+          <div
+            :class="['tab-item', { active: currentTab === 1 }]"
+            @click="onClickTab(1)"
+          >
+            <p class="tab-item-title">公司活动</p>
+          </div>
+          <div
+            class="tab-item"
+            :class="['tab-item', { active: currentTab === 2 }]"
+            @click="onClickTab(2)"
+          >
+            <p class="tab-item-title">企业快讯</p>
+          </div>
+          <div
+            class="tab-item"
+            :class="['tab-item', { active: currentTab === 3 }]"
+            @click="onClickTab(3)"
+          >
+            <p class="tab-item-title">媒体报道</p>
+          </div>
+        </div>
+        <div class="content">
+          <div
+            v-show="currentTab === 1"
+            class="swiper-container"
+          >
             <ul class="media-ul" v-show="!isShowDetail">
               <li v-for="item in listData">
                 <dl @click="routerTo('/media',{id: 2222})">
@@ -29,7 +56,7 @@
                 </dl>
               </li>
             </ul>
-            <div v-show="isShowDetail">
+            <div class="media-detail" v-show="isShowDetail">
               <span class="tab-title">公司简介</span>
               <p>
                 PH是一种布宜诺斯艾利斯典型的住宅类型，这种住宅以高密度和低楼层著称。 项目是一个长期规划的收尾性空间，PH Lavallej
@@ -41,57 +68,19 @@
                 中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。
               </p>
             </div>
-          </tab>
-          <tab :title="'企业快讯'">
-            <ul class="media-ul">
-              <li v-for="item in listData1">
-                <dl>
-                  <dt>
-                    <img :src="item.img" alt="" />
-                  </dt>
-                  <dd>
-                    <span>{{item.title}}</span>
-                    <span>{{item.date}}</span>
-                    <span>{{item.text}}</span>
-                    <span>详情</span>
-                  </dd>
-                </dl>
-              </li>
-            </ul>
-          </tab>
-          <tab :title="'媒体报道'">
-            <ul class="media-ul">
-              <li v-for="item in listData2">
-                <dl>
-                  <dt>
-                    <img :src="item.img" alt="" />
-                  </dt>
-                  <dd>
-                    <span>{{item.title}}</span>
-                    <span>{{item.date}}</span>
-                    <span>{{item.text}}</span>
-                    <span>详情</span>
-                  </dd>
-                </dl>
-              </li>
-            </ul>
-          </tab>
-        </tabs>
+          </div>      
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-import { Tabs, Tab } from "vue-tmn-tabs";
 
 export default {
   name: "home",
-  components: {
-    Tab,
-    Tabs
-  },
   data: function() {
     return {
+      currentTab: 1,
       id: null,
       isShowDetail: false,
       listData: [
@@ -152,11 +141,17 @@ export default {
   },
   watch: {
     $route() {
-      this.id= this.$route.query.id; //获取传来的参数 
-      this.showDetail()
+      this.id = this.$route.query.id; // 获取传来的参数
+      this.showDetail();
 		}
   },
   methods: {
+    onClickTab(index) {
+      this.currentTab = index;
+      this.$nextTick().then(() => {
+        this.routerTo('/media')
+      })
+    },
     routerTo(url, queryObj) {
       this.$router.push({
         path: url,
@@ -190,6 +185,8 @@ export default {
 };
 </script>
 <style lang="less">
+@green: #038a03;
+@tips: #8d8c8c;
 .media {
   .intro-banner {
     width: 100%;
@@ -230,88 +227,79 @@ export default {
     }
     .intro-container-box {
       margin-bottom: 100px;
-      .media-ul {
-        li {
-          list-style: none;
-          border-bottom: solid 1px #c3c3c3;
-          &:last-child {
-            border: none;
+      display: flex;
+      .tab {
+        margin-bottom: 36px;
+      }
+      .tab-item {
+        line-height: 1;
+        display: block;
+        margin-right: 55px;
+        cursor: pointer;
+        font-size: 16px;
+        color: #6b6b6b;
+        line-height: 48px;
+        &.active {
+          .tab-item-title {
+            color: @green;
+            border-bottom: solid 2px @green;
           }
-          dl {
-            display: flex;
-            dt {
-              width: 342px;
-              height: 143px;
-              img {
-                width: 100%;
-                height: 100%;
-              }
+        }
+      }
+      .tab-item-tips {
+        font-size: 16px;
+        color: #8d8c8c;
+      }
+      .content {
+        flex: 1;
+        height: 340px;
+        .media-ul {
+          li {
+            list-style: none;
+            border-bottom: solid 1px #c3c3c3;
+            &:last-child {
+              border: none;
             }
-            dd {
-              flex: 1;
-              margin-left: 33px;
-              span {
-                display: block;
-                font-size: 14px;
-                line-height: 20px;
-                text-align: left;
-                color: #8d8c8c;
+            dl {
+              display: flex;
+              dt {
+                width: 342px;
+                height: 143px;
+                img {
+                  width: 100%;
+                  height: 100%;
+                }
+              }
+              dd {
+                flex: 1;
+                margin-left: 33px;
+                span {
+                  display: block;
+                  font-size: 14px;
+                  line-height: 20px;
+                  text-align: left;
+                  color: #8d8c8c;
+                }
               }
             }
           }
         }
+        .media-detail {
+          color: #535353;
+          span {
+            font-size: 18px;
+            line-height: 100px;
+            text-align: center;
+            display: block;
+          }
+          p {
+            font-size: 14px;
+            line-height: 30px;
+            text-align: left;
+          }
+        }
       }
     }
-  }
-}
-.vue-tabs {
-  display: flex;
-}
-
-.vue-tabs__nav {
-  width: 100px;
-  background: transparent;
-  margin-right: 11%;
-  display: flex;
-  flex-direction: column;
-  align-items: baseline;
-}
-.vue-tabs__nav-item {
-  font-size: 16px;
-  color: #6b6b6b;
-  line-height: 48px;
-  padding: 0;
-  outline: none;
-  border: none;
-}
-
-.vue-tabs__nav-item.--active {
-  color: #038a03;
-  border-bottom: solid 2px #038a03;
-}
-
-.vue-tabs__panel {
-  outline: none;
-}
-
-.vue-tabs__panel[hidden="hidden"] {
-  display: none;
-}
-
-.vue-tabs__panel-container {
-  width: 920px;
-  flex: 6;
-  color: #535353;
-  .tab-title {
-    font-size: 18px;
-    line-height: 100px;
-    text-align: center;
-    display: block;
-  }
-  p {
-    font-size: 14px;
-    line-height: 30px;
-    text-align: left;
   }
 }
 </style>
