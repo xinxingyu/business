@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div class="swiper-warper">
+    <div class="swiper-warper" v-if="!isMobile">
       <!-- Swiper -->
       <div class="swiper-container gallery-top">
         <div class="swiper-wrapper">
@@ -36,6 +36,37 @@
         </div>
       </div>
     </div>
+    <div v-else class="mo-swipe">
+      <van-swipe
+        indicator-color="#333"
+        @change="onChangeVanSwipe"
+        ref="vantSwiper"
+      >
+        <van-swipe-item v-for="item in imagesList" v-bind:key="item.index">
+          <div
+            class="mo-swipe-img"
+            :style="{ backgroundImage: 'url(' + item.path + ')' }"
+          ></div>
+        </van-swipe-item>
+
+        <div class="custom-indicator" slot="indicator">
+          <div
+            v-for="(item, index) in vantSwiperSlide"
+            v-bind:key="item.id"
+            @click="onChangeVantSwipe(index)"
+            :class="[
+              'indicator-item',
+              item.class,
+              currentVanSwipe === index ? 'active' : ''
+            ]"
+          >
+            <p class="thumbs-title">{{ item.name }}</p>
+            <p class="thumbs-eng">{{ item.tips }}</p>
+          </div>
+        </div>
+      </van-swipe>
+    </div>
+
     <div class="main">
       <AnimateBox>
         <div class="about">
@@ -113,16 +144,21 @@
                   <a
                     href="#"
                     class="slide-item"
-                    v-for="item in IntroContentList1"
+                    v-for="(item, index) in IntroContentList2"
                     v-bind:key="item.id"
                   >
-                    <div class="item-img">
-                      <img :src="item.imgPath" alt="" srcset="" />
-                    </div>
-                    <div class="item-wrapper">
-                      <p class="item-wrap-title">{{ item.title }}</p>
-                      <p class="item-wrap-tips">{{ item.tips }}</p>
-                    </div>
+                    <AnimateBox
+                      :delayTime="index + 1"
+                      style="display: inline-block;"
+                    >
+                      <div class="item-img">
+                        <img :src="item.imgPath" alt="" srcset="" />
+                      </div>
+                      <div class="item-wrapper">
+                        <p class="item-wrap-title">{{ item.title }}</p>
+                        <p class="item-wrap-tips">{{ item.tips }}</p>
+                      </div>
+                    </AnimateBox>
                   </a>
                 </div>
               </div>
@@ -143,32 +179,42 @@
                   <a
                     href="#"
                     class="slide-item"
-                    v-for="item in IntroContentList1"
+                    v-for="(item, index) in IntroContentList1"
                     v-bind:key="item.id"
                   >
-                    <div class="item-img">
-                      <img :src="item.imgPath" alt="" srcset="" />
-                    </div>
-                    <div class="item-wrapper">
-                      <p class="item-wrap-title">{{ item.title }}</p>
-                      <p class="item-wrap-tips">{{ item.tips }}</p>
-                    </div>
+                    <AnimateBox
+                      :delayTime="index + 1"
+                      style="display: inline-block;"
+                    >
+                      <div class="item-img">
+                        <img :src="item.imgPath" alt="" srcset="" />
+                      </div>
+                      <div class="item-wrapper">
+                        <p class="item-wrap-title">{{ item.title }}</p>
+                        <p class="item-wrap-tips">{{ item.tips }}</p>
+                      </div>
+                    </AnimateBox>
                   </a>
                 </div>
                 <div class="swiper-slide">
                   <a
                     href="#"
                     class="slide-item"
-                    v-for="item in IntroContentList1"
+                    v-for="(item, index) in IntroContentList1"
                     v-bind:key="item.id"
                   >
-                    <div class="item-img">
-                      <img :src="item.imgPath" alt="" srcset="" />
-                    </div>
-                    <div class="item-wrapper">
-                      <p class="item-wrap-title">{{ item.title }}</p>
-                      <p class="item-wrap-tips">{{ item.tips }}</p>
-                    </div>
+                    <AnimateBox
+                      :delayTime="index + 1"
+                      style="display: inline-block;"
+                    >
+                      <div class="item-img">
+                        <img :src="item.imgPath" alt="" srcset="" />
+                      </div>
+                      <div class="item-wrapper">
+                        <p class="item-wrap-title">{{ item.title }}</p>
+                        <p class="item-wrap-tips">{{ item.tips }}</p>
+                      </div>
+                    </AnimateBox>
                   </a>
                 </div>
               </div>
@@ -200,8 +246,8 @@
                       <p class="item-wrap-tips">{{ item.tips }}</p>
                     </div>
                   </AnimateBox>
-                </a></van-swipe-item
-              >
+                </a>
+              </van-swipe-item>
             </van-swipe>
           </div>
 
@@ -210,7 +256,7 @@
             <p class="tips ellipsis">Product service</p>
             <van-swipe indicator-color="#333">
               <van-swipe-item
-                v-for="(item, index) in IntroContentList1"
+                v-for="(item, index) in IntroContentList2"
                 v-bind:key="item.id"
                 ><a href="#" class="intro-van-item">
                   <AnimateBox
@@ -262,7 +308,11 @@
                 <span>News media</span>
               </div>
               <ul class="mw-top-list" v-if="!isMobile">
-                <li v-for="media in MediaList" v-bind:key="media.name">
+                <li
+                  v-for="media in MediaList"
+                  v-bind:key="media.name"
+                  @click="onClickMediaLink(media.link)"
+                >
                   {{ media.name }}
                 </li>
               </ul>
@@ -325,6 +375,28 @@ const imagesList = [
   }
 ];
 
+const VantSwiperSlide = [{
+  id: 0,
+  name: '红孩儿有机厨房',
+  tips:'Red Baby Organic Kitchen',
+  class: 'thumbs1'
+},{
+  id: 1,
+  name: '美时美景旅行社',
+  tips:'Meishi Meimei travel agency',
+  class: 'thumbs2'
+},{
+  id: 2,
+  name: '元素力量健身会所',
+  tips:'Element strength fitness club',
+  class: 'thumbs3'
+},{
+  id: 3,
+  name: '逸养 · 生态家',
+  tips:'Ecological home',
+  class: 'thumbs4'
+}];
+
 const IntroContentList1 = [
   {
     id: 1,
@@ -356,23 +428,23 @@ const IntroContentList2 = IntroContentList1;
 const MediaList = [
   {
     name: "全部",
-    link: ""
+    link: 0
   },
   {
     name: "公司活动",
-    link: ""
+    link: 1
   },
   {
     name: "企业快讯",
-    link: ""
+    link: 2
   },
   {
     name: "媒体报道",
-    link: ""
+    link: 3
   },
   {
     name: "更多",
-    link: ""
+    link: 0
   }
 ];
 
@@ -409,6 +481,7 @@ export default {
   data: function() {
     return {
       imagesList,
+      vantSwiperSlide: VantSwiperSlide,
       MediaList,
       MediaContentList,
       galleryThumbs: null,
@@ -417,7 +490,8 @@ export default {
       IntroContentSwiper2: null,
       IntroContentList1,
       IntroContentList2,
-      currentTab: 1
+      currentTab: 1,
+      currentVanSwipe: 0
     };
   },
   inject: ["isMobile"],
@@ -425,29 +499,35 @@ export default {
     this.initSwiper();
   },
   methods: {
+    onChangeVanSwipe(index) {
+      console.log(index)
+      this.currentVanSwipe = index;
+    },
+    onChangeVantSwipe(index) {
+      this.$refs.vantSwiper.swipeTo(index);
+    },
     initSwiper() {
-      this.galleryThumbs = new Swiper(".gallery-thumbs", {
-        allowTouchMove: !this.isMobile,
-        direction: "vertical",
-        spaceBetween: 0,
-        slidesPerView: 4,
-        freeMode: true,
-        watchSlidesVisibility: true,
-        watchSlidesProgress: true
-      });
-      this.galleryTop = new Swiper(".gallery-top", {
-        direction: "vertical",
-        spaceBetween: 0,
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev"
-        },
-        thumbs: {
-          swiper: this.galleryThumbs
-        }
-      });
-
       if (!this.isMobile) {
+        this.galleryThumbs = new Swiper(".gallery-thumbs", {
+          allowTouchMove: !this.isMobile,
+          direction: "vertical",
+          spaceBetween: 0,
+          slidesPerView: 4,
+          freeMode: true,
+          watchSlidesVisibility: true,
+          watchSlidesProgress: true
+        });
+        this.galleryTop = new Swiper(".gallery-top", {
+          direction: "vertical",
+          spaceBetween: 0,
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev"
+          },
+          thumbs: {
+            swiper: this.galleryThumbs
+          }
+        });
         this.onClickTab(this.currentTab);
       }
     },
@@ -470,6 +550,9 @@ export default {
           });
         }
       });
+    },
+    onClickMediaLink(link) {
+      this.$router.push({ name: "media", params: { tid: link } });
     }
   }
 };
@@ -546,6 +629,53 @@ export default {
     }
   }
 }
+.mo-swipe {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  .van-swipe {
+    // height: 100%;
+    .van-swipe__track {
+      height: 284px;
+    }
+    .mo-swipe-img {
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+    }
+    .custom-indicator {
+      width: 100%;
+    }
+    .indicator-item {
+      padding: 10px 0;
+    }
+    .thumbs-title {
+      font-size: 30px;
+      color: #fff;
+    }
+    .thumbs-eng {
+      font-size: 14px;
+      color: #fff;
+    }
+    .thumbs1 {
+      background-color: rgba(71, 49, 250, 0.75);
+    }
+    .thumbs2 {
+      background-color: rgba(79, 171, 241, 0.75);
+    }
+    .thumbs3 {
+      background-color: rgba(101, 197, 115, 0.75);
+    }
+    .thumbs4 {
+      background-color: rgba(255, 110, 115, 0.75);
+    }
+    .active {
+      box-shadow: 0px 0px 6px rgba(255, 255, 255, 1) inset;
+    }
+  }
+}
 .home {
   .main {
     padding: 77px 0 80px 0;
@@ -581,6 +711,7 @@ export default {
           .info-tips {
             font-size: 14px;
             color: #5f5e5e;
+            line-height: 26px;
           }
         }
         .info-more {
@@ -984,19 +1115,19 @@ export default {
 // 兼容
 // @media screen and (max-width: 420px) {
 @media screen and (max-width: 1070px) {
-  .swiper-warper {
-    height: auto;
-    .gallery-top {
-      height: 280px;
-    }
-    .gallery-thumbs {
-      width: 100%;
-      position: relative;
-      top: 0;
-      right: 0;
-      transform: translate(0, 0);
-    }
-  }
+  // .swiper-warper {
+  //   height: auto;
+  //   .gallery-top {
+  //     height: 280px;
+  //   }
+  //   .gallery-thumbs {
+  //     width: 100%;
+  //     position: relative;
+  //     top: 0;
+  //     right: 0;
+  //     transform: translate(0, 0);
+  //   }
+  // }
   .home {
     .main {
       // padding: 60px 0 20px 0;

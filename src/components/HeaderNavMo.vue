@@ -3,7 +3,12 @@
     <transition name="slide-fade">
       <nav v-if="show" class="mo-nav">
         <ul class="nav-container">
-          <li class="nav-li" v-for="item in navList" v-bind:key="item.name">
+          <li
+            class="nav-li"
+            v-for="item in navList"
+            v-bind:key="item.name"
+            @click="onClickNav()"
+          >
             <router-link class="nav-li-router" :to="{ path: item.link }">{{
               item.name
             }}</router-link>
@@ -52,8 +57,7 @@ export default {
   },
   data() {
     return {
-      navList: NAVLIST,
-      isOpen: false
+      navList: NAVLIST
     };
   },
   computed: {
@@ -63,9 +67,10 @@ export default {
   },
   mounted() {},
   methods: {
-    clickMenu() {
-      this.isOpen = !this.isOpen;
-      this.$EventBus.$emit("openMenu", this.isOpen);
+    onClickNav() {
+      this.$store.dispatch("handleMenuStatus", {
+        status: false
+      });
     }
   }
 };

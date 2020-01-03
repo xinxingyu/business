@@ -14,18 +14,22 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "HeaderNav",
   props: {},
   data() {
-    return {
-      isOpen: false
-    };
+    return {};
   },
+  computed: mapState({
+    isOpen: state => state.isOpen
+  }),
   methods: {
     clickMenu() {
-      this.isOpen = !this.isOpen;
-      this.$EventBus.$emit("openMenu", this.isOpen);
+      this.$store.dispatch("handleMenuStatus", {
+        status: !this.isOpen
+      });
     }
   }
 };

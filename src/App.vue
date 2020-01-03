@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import FooterBox from "components/FooterBox";
 import FooterBoxMo from "components/FooterBoxMo";
 import HeaderNavMo from "components/HeaderNavMo";
@@ -46,7 +47,6 @@ export default {
   },
   data() {
     return {
-      isOpen: false,
       isMobile
     };
   },
@@ -55,16 +55,11 @@ export default {
       isMobile
     };
   },
-  mounted() {
-    this.$EventBus.$on("openMenu", open => {
-      this.moveBody(open);
-    });
-  },
-  methods: {
-    moveBody(open) {
-      this.isOpen = open;
-    }
-  }
+  computed: mapState({
+    isOpen: state => state.isOpen
+  }),
+  mounted() {},
+  methods: {}
 };
 </script>
 

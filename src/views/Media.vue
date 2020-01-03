@@ -1,25 +1,87 @@
 <template>
   <div class="media">
     <div class="intro-banner"></div>
-    <div class="intro-container">
+    <div class="intro-container center">
       <div class="intro-container-header">
         <div class="intro-container-title">
           <p>新闻媒体</p>
           <span>introdution</span>
         </div>
         <div class="intro-container-text">
-          <span>您的位置：首页 > 新闻媒体</span>
+          <span>您的位置：</span><span @click="routerTo('/home')">首页</span> >
+          <span @click="routerTo('/media')"> 新闻媒体 </span>
+          <span v-show="id"> > 详情</span>
         </div>
       </div>
       <div class="intro-container-box">
-        <tabs transitionName="fade">
-          <tab :title="'公司活动'">
-            <ul class="media-ul">
-              <li v-for="item in mediaInfo" v-bind:key="item.id">
+        <div class="tab">
+          <div
+            :class="['tab-item', { active: currentTab === 1 }]"
+            @click="onClickTab(1)"
+          >
+            <p class="tab-item-title">公司活动</p>
+          </div>
+          <div
+            class="tab-item"
+            :class="['tab-item', { active: currentTab === 2 }]"
+            @click="onClickTab(2)"
+          >
+            <p class="tab-item-title">企业快讯</p>
+          </div>
+          <div
+            class="tab-item"
+            :class="['tab-item', { active: currentTab === 3 }]"
+            @click="onClickTab(3)"
+          >
+            <p class="tab-item-title">媒体报道</p>
+          </div>
+        </div>
+        <div class="content">
+          <div v-show="currentTab === 1">
+            <ul class="media-ul" v-show="!isShowDetail">
+              <li
+                v-for="item in mediaInfo"
+                v-bind:key="item.id"
+                class="media-ul-item"
+              >
                 <AnimateBox
                   style="display: inline-block;border-bottom: solid 1px #c3c3c3;"
                 >
-                  <dl>
+                  <dl @click="routerTo('/media', { id: 2222 })">
+                    <dt>
+                      <img :src="item.headImg" alt="" />
+                    </dt>
+                    <dd>
+                      <span class="item-title">{{ item.title }}</span>
+                      <span class="item-time">{{ item.time }}</span>
+                      <span class="item-content">{{ item.content }}</span>
+                      <span class="item-more">详情</span>
+                    </dd>
+                  </dl>
+                </AnimateBox>
+              </li>
+            </ul>
+            <div class="media-detail" v-show="isShowDetail">
+              <span class="tab-title">公司简介</span>
+              <p>
+                PH是一种布宜诺斯艾利斯典型的住宅类型，这种住宅以高密度和低楼层著称。
+                项目是一个长期规划的收尾性空间，PH Lavallej
+              </p>
+              <p>
+                中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。
+              </p>
+              <p>
+                中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。
+              </p>
+            </div>
+          </div>
+          <div v-show="currentTab === 2">
+            <ul class="media-ul" v-show="!isShowDetail">
+              <li v-for="item in mediaInfo2" v-bind:key="item.id">
+                <AnimateBox
+                  style="display: inline-block;border-bottom: solid 1px #c3c3c3;"
+                >
+                  <dl @click="routerTo('/media', { id: 2222 })">
                     <dt>
                       <img :src="item.headImg" alt="" />
                     </dt>
@@ -33,26 +95,60 @@
                 </AnimateBox>
               </li>
             </ul>
-          </tab>
-          <tab :title="'企业快讯'">
-            <span>企业快讯</span>
-            <p class="tab-text">
-              基金将通过竞赛、评选、成果转化、奖励等办法，培养一批创新人才，培育一批创新成果，树立一批创新典型，倡导创新文化，引导青年树立自主创新意识，提高自主创新能力
-            </p>
-          </tab>
-          <tab :title="'媒体报道'">
-            <span>媒体报道</span>
-            <p class="tab-text">
-              投身创业创新实践；通过项目竞赛、贴息贷款、导师带徒等办法，改变青年就业观念该基金理事会将每年定期组织开展“创业浙江”大赛，评选产生的创新奖获得者将得到一定金额的奖励主要提供农业实用技术和来料加工业务指导，重点鼓励发展现代农业
-            </p>
-          </tab>
-        </tabs>
+            <div class="media-detail" v-show="isShowDetail">
+              <span class="tab-title">公司简介</span>
+              <p>
+                PH是一种布宜诺斯艾利斯典型的住宅类型，这种住宅以高密度和低楼层著称。
+                项目是一个长期规划的收尾性空间，PH Lavallej
+              </p>
+              <p>
+                中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。
+              </p>
+              <p>
+                中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。
+              </p>
+            </div>
+          </div>
+          <div v-show="currentTab === 3">
+            <ul class="media-ul" v-show="!isShowDetail">
+              <li v-for="item in mediaInfo3" v-bind:key="item.id">
+                <AnimateBox
+                  style="display: inline-block;border-bottom: solid 1px #c3c3c3;"
+                >
+                  <dl @click="routerTo('/media', { id: 2222 })">
+                    <dt>
+                      <img :src="item.headImg" alt="" />
+                    </dt>
+                    <dd>
+                      <span>{{ item.title }}</span>
+                      <span>{{ item.time }}</span>
+                      <span>{{ item.content }}</span>
+                      <span>详情</span>
+                    </dd>
+                  </dl>
+                </AnimateBox>
+              </li>
+            </ul>
+            <div class="media-detail" v-show="isShowDetail">
+              <span class="tab-title">公司简介</span>
+              <p>
+                PH是一种布宜诺斯艾利斯典型的住宅类型，这种住宅以高密度和低楼层著称。
+                项目是一个长期规划的收尾性空间，PH Lavallej
+              </p>
+              <p>
+                中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。
+              </p>
+              <p>
+                中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-import { Tabs, Tab } from "vue-tmn-tabs";
 import AnimateBox from "components/AnimateBox.vue";
 const MediaInfo = {
   headImg:
@@ -67,29 +163,81 @@ const MediaInfo = {
 export default {
   name: "home",
   components: {
-    Tab,
-    Tabs,
     AnimateBox
   },
   data: function() {
     return {
-      galleryThumbs: null,
-      galleryTop: null,
-      mediaInfo: []
+      currentTab: 1,
+      id: null,
+      isShowDetail: false,
+      mediaInfo: [],
+      mediaInfo2: [],
+      mediaInfo3: []
     };
   },
+  watch: {
+    $route() {
+      this.id = this.$route.query.id; // 获取传来的参数
+      this.showDetail();
+    }
+  },
+  created() {
+    // this.id = this.$route.params.id
+  },
   mounted() {
+    this.handleTabAcative();
+
     for (let index = 0; index < 10; index++) {
-      this.mediaInfo.push(
-        Object.assign({}, MediaInfo, {
-          id: index
-        })
-      );
+      const nData = Object.assign({}, MediaInfo, {
+        id: index
+      });
+      this.mediaInfo.push(nData);
+      this.mediaInfo2.push(nData);
+      this.mediaInfo3.push(nData);
+    }
+  },
+  methods: {
+    handleTabAcative() {
+      console.log(this.$route.params);
+      const { tid } = this.$route.params;
+      if (tid) {
+        this.currentTab = tid;
+      }
+    },
+    onClickTab(index) {
+      this.currentTab = index;
+      this.$nextTick().then(() => {
+        this.routerTo("/media");
+      });
+    },
+    routerTo(url, queryObj) {
+      this.$router.push({
+        path: url,
+        query: queryObj
+      });
+    },
+    goDetail() {
+      this.$router.push({
+        path: "/media",
+        name: `media`,
+        query: {
+          id: 8989
+        }
+      });
+    },
+    showDetail() {
+      if (this.id) {
+        this.isShowDetail = true;
+      } else {
+        this.isShowDetail = false;
+      }
     }
   }
 };
 </script>
 <style lang="less">
+@green: #038a03;
+@tips: #8d8c8c;
 .media {
   .intro-banner {
     width: 100%;
@@ -97,10 +245,9 @@ export default {
     background: seagreen;
   }
   .intro-container {
-    padding: 0 90px;
     .intro-container-header {
       width: 100%;
-      margin: 60px 0;
+      margin: 60px 0 0 0;
       overflow: hidden;
       .intro-container-title {
         width: 164px;
@@ -128,79 +275,116 @@ export default {
       }
     }
     .intro-container-box {
-      // height: 700px;
-    }
-  }
-}
-.vue-tabs {
-  display: flex;
-}
-
-.vue-tabs__nav {
-  background: transparent;
-  margin-right: 150px;
-  display: flex;
-  flex-direction: column;
-  align-items: baseline;
-}
-.vue-tabs__nav-item {
-  font-size: 16px;
-  color: #6b6b6b;
-  line-height: 48px;
-  padding: 0;
-  outline: none;
-  border: none;
-  background-color: transparent;
-}
-
-.vue-tabs__nav-item.--active {
-  color: #038a03;
-  border-bottom: solid 2px #038a03;
-}
-
-.vue-tabs__panel {
-  outline: none;
-}
-
-.vue-tabs__panel[hidden="hidden"] {
-  display: none;
-}
-
-.vue-tabs__panel-container {
-  width: 920px;
-  span {
-    font-size: 18px;
-    line-height: 100px;
-  }
-  p {
-    font-size: 14px;
-    line-height: 30px;
-    text-align: left;
-  }
-}
-.media-ul {
-  li {
-    list-style: none;
-    // border-bottom: solid 1px #c3c3c3;
-    dl {
-      display: flex;
-      dt {
-        width: 342px;
-        height: 143px;
-        img {
-          width: 100%;
-          height: 100%;
+      margin-bottom: 100px;
+      font-size: 0;
+      .tab {
+        display: inline-block;
+        width: 70px;
+        margin-right: 90px;
+        vertical-align: top;
+        padding-top: 70px;
+      }
+      .tab-item {
+        line-height: 1;
+        display: block;
+        cursor: pointer;
+        font-size: 16px;
+        color: #6b6b6b;
+        line-height: 48px;
+        &.active {
+          .tab-item-title {
+            color: @green;
+            border-bottom: solid 2px @green;
+          }
         }
       }
-      dd {
-        flex: 1;
-        margin-left: 33px;
-        span {
-          display: block;
-          font-size: 14px;
-          line-height: 27px;
-          text-align: left;
-          color: #8d8c8c;
+      .tab-item-tips {
+        font-size: 16px;
+        color: #8d8c8c;
+      }
+      .content {
+        display: inline-block;
+        max-width: 1000px;
+        .media-ul {
+          li {
+            cursor: pointer;
+            list-style: none;
+            height: 180px;
+            &:last-child {
+              border: none;
+            }
+            dl {
+              margin: 0;
+              padding: 20px 0;
+              dt {
+                width: 342px;
+                height: 143px;
+                display: inline-block;
+                margin-right: 33px;
+
+                img {
+                  width: 100%;
+                  height: 100%;
+                }
+              }
+              dd {
+                position: relative;
+                display: inline-block;
+                vertical-align: top;
+                width: 625px;
+                height: 143px;
+                margin: 0;
+                span {
+                  display: block;
+                  font-size: 14px;
+                  line-height: 20px;
+                  text-align: left;
+                  color: #8d8c8c;
+                }
+                .item-title {
+                  font-size: 16px;
+                  line-height: 30px;
+                  color: #303030;
+                }
+                .item-time {
+                  padding: 5px 0;
+                }
+                .item-content {
+                  // padding-top: 11px;
+                  font-size: 13px;
+                  line-height: 26px;
+                  // height: 52px;
+                  color: #888;
+
+                  word-break: break-all;
+                  text-overflow: ellipsis;
+                  display: -webkit-box;
+                  -webkit-box-orient: vertical;
+                  -webkit-line-clamp: 2;
+                  overflow: hidden;
+                }
+                .item-more {
+                  position: absolute;
+                  left: 0;
+                  bottom: 0;
+                }
+              }
+            }
+          }
+        }
+        .media-detail {
+          color: #535353;
+          span {
+            font-size: 18px;
+            line-height: 100px;
+            text-align: center;
+            display: block;
+          }
+          p {
+            font-size: 14px;
+            line-height: 30px;
+            text-align: left;
+          }
         }
       }
     }
