@@ -22,14 +22,24 @@
         </div>
       </div>
       <ul class="content-list">
-        <li><img src="../assets/images/ma.jpg" alt="" /></li>
-        <li><img src="../assets/images/ma.jpg" alt="" /></li>
+        <li>
+          <AnimateBox style="display: inline-block;"
+            ><img src="../assets/images/ma.jpg" alt=""
+          /></AnimateBox>
+        </li>
+        <li>
+          <AnimateBox :delayTime="1" style="display: inline-block;">
+            <img src="../assets/images/ma.jpg" alt=""
+          /></AnimateBox>
+        </li>
       </ul>
     </div>
   </div>
 </template>
 
 <script>
+import AnimateBox from "components/AnimateBox.vue";
+
 const headerBg = require("assets/images/home_bg.jpg");
 const info = [
   {
@@ -52,7 +62,7 @@ const info = [
 
 export default {
   name: "about",
-  components: {},
+  components: { AnimateBox },
   data: function() {
     return {
       info,

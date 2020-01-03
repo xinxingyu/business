@@ -63,7 +63,7 @@
 
       <!-- 产品系列、运营板块 -->
       <div class="intro">
-        <div class="intro-wrapper">
+        <div class="intro-wrapper" v-if="!isMobile">
           <div class="tab">
             <div
               :class="['tab-item', { active: currentTab === 1 }]"
@@ -179,6 +179,57 @@
             </div>
           </div>
         </div>
+        <div class="intro-van center" v-else>
+          <div class="intro-van-ct">
+            <p class="title ellipsis">产品系列</p>
+            <p class="tips ellipsis">Product service</p>
+            <van-swipe indicator-color="#333">
+              <van-swipe-item
+                v-for="(item, index) in IntroContentList1"
+                v-bind:key="item.id"
+                ><a href="#" class="intro-van-item">
+                  <AnimateBox
+                    :delayTime="index + 1"
+                    style="display: inline-block;"
+                  >
+                    <div class="item-img">
+                      <img :src="item.imgPath" alt="" srcset="" />
+                    </div>
+                    <div class="item-wrapper">
+                      <p class="item-wrap-title">{{ item.title }}</p>
+                      <p class="item-wrap-tips">{{ item.tips }}</p>
+                    </div>
+                  </AnimateBox>
+                </a></van-swipe-item
+              >
+            </van-swipe>
+          </div>
+
+          <div class="intro-van-ct">
+            <p class="title ellipsis">运营板块</p>
+            <p class="tips ellipsis">Product service</p>
+            <van-swipe indicator-color="#333">
+              <van-swipe-item
+                v-for="(item, index) in IntroContentList1"
+                v-bind:key="item.id"
+                ><a href="#" class="intro-van-item">
+                  <AnimateBox
+                    :delayTime="index + 1"
+                    style="display: inline-block;"
+                  >
+                    <div class="item-img">
+                      <img :src="item.imgPath" alt="" srcset="" />
+                    </div>
+                    <div class="item-wrapper">
+                      <p class="item-wrap-title">{{ item.title }}</p>
+                      <p class="item-wrap-tips">{{ item.tips }}</p>
+                    </div>
+                  </AnimateBox>
+                </a></van-swipe-item
+              >
+            </van-swipe>
+          </div>
+        </div>
       </div>
 
       <!-- 生态基地 -->
@@ -210,7 +261,7 @@
                 <p>新闻媒体</p>
                 <span>News media</span>
               </div>
-              <ul class="mw-top-list">
+              <ul class="mw-top-list" v-if="!isMobile">
                 <li v-for="media in MediaList" v-bind:key="media.name">
                   {{ media.name }}
                 </li>
@@ -248,7 +299,8 @@
 </template>
 
 <script>
-import Swiper from "swiper";
+import Swiper from "swiper/js/swiper.min.js";
+// import Swiper from "assets/swiper/swiper.min.js";
 import AnimateBox from "components/AnimateBox.vue";
 
 const imagesList = [
@@ -370,42 +422,50 @@ export default {
   },
   inject: ["isMobile"],
   mounted() {
-    this.galleryThumbs = new Swiper(".gallery-thumbs", {
-      allowTouchMove: !this.isMobile,
-      direction: "vertical",
-      spaceBetween: 0,
-      slidesPerView: 4,
-      freeMode: true,
-      watchSlidesVisibility: true,
-      watchSlidesProgress: true
-    });
-    this.galleryTop = new Swiper(".gallery-top", {
-      direction: "vertical",
-      spaceBetween: 0,
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev"
-      },
-      thumbs: {
-        swiper: this.galleryThumbs
-      }
-    });
-    this.onClickTab(this.currentTab);
+    this.initSwiper();
   },
   methods: {
+    initSwiper() {
+      this.galleryThumbs = new Swiper(".gallery-thumbs", {
+        allowTouchMove: !this.isMobile,
+        direction: "vertical",
+        spaceBetween: 0,
+        slidesPerView: 4,
+        freeMode: true,
+        watchSlidesVisibility: true,
+        watchSlidesProgress: true
+      });
+      this.galleryTop = new Swiper(".gallery-top", {
+        direction: "vertical",
+        spaceBetween: 0,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev"
+        },
+        thumbs: {
+          swiper: this.galleryThumbs
+        }
+      });
+
+      if (!this.isMobile) {
+        this.onClickTab(this.currentTab);
+      }
+    },
     onClickTab(index) {
       this.currentTab = index;
       this.$nextTick().then(() => {
         if (index === 1) {
           this.IntroContentSwiper1 = new Swiper("#IntroContentSwiper1", {
             pagination: {
-              el: "#IntroContentSwiper1-pagination"
+              el: "#IntroContentSwiper1-pagination",
+              clickable: true
             }
           });
         } else {
           this.IntroContentSwiper2 = new Swiper("#IntroContentSwiper2", {
             pagination: {
-              el: "#IntroContentSwiper2-pagination"
+              el: "#IntroContentSwiper2-pagination",
+              clickable: true
             }
           });
         }
@@ -456,32 +516,33 @@ export default {
       cursor: pointer;
       width: 100%;
       height: 100%;
-      opacity: 0.4;
+      // opacity: 0.4;
       padding-top: 24px;
       box-sizing: border-box;
     }
     .swiper-slide-thumb-active {
-      opacity: 1;
+      // opacity: 1;
+      box-shadow: 0px 0px 6px rgba(255, 255, 255, 1) inset;
     }
     .thumbs-title {
-      font-size: 32px;
+      font-size: 30px;
       color: #fff;
     }
     .thumbs-eng {
-      font-size: 16px;
+      font-size: 14px;
       color: #fff;
     }
     .thumbs1 {
-      background-color: #4731fa;
+      background-color: rgba(71, 49, 250, 0.75);
     }
     .thumbs2 {
-      background-color: #4fabf1;
+      background-color: rgba(79, 171, 241, 0.75);
     }
     .thumbs3 {
-      background-color: #65c573;
+      background-color: rgba(101, 197, 115, 0.75);
     }
     .thumbs4 {
-      background-color: #ff6e73;
+      background-color: rgba(255, 110, 115, 0.75);
     }
   }
 }
@@ -637,6 +698,7 @@ export default {
 
         .swiper-container {
           height: 340px;
+          overflow: hidden;
         }
         .swiper-wrapper {
           height: 282px;
@@ -731,6 +793,49 @@ export default {
       }
     }
 
+    .intro-van {
+      .title {
+        font-size: 18px;
+        color: #333;
+        text-align: left;
+      }
+      .tips {
+        padding: 0 0 16px;
+        padding-top: 2px;
+        color: #b7b7b7;
+        text-align: left;
+      }
+      .intro-van-ct {
+        margin-bottom: 40px;
+      }
+      .intro-van-item {
+        .item-wrapper {
+          padding: 20px;
+          width: calc(100% - 40px);
+          display: block;
+          text-align: left;
+          .item-wrap-title {
+            color: #444;
+            font-size: 15px;
+            transition: all 0.3s ease-out 0s;
+            line-height: 20px;
+          }
+          .item-wrap-tips {
+            color: #999;
+            font-size: 14px;
+            margin-top: 2px;
+            transition: all 0.3s ease-out 0s;
+            line-height: 14px;
+          }
+        }
+      }
+      .van-swipe__indicators {
+        bottom: 0px;
+      }
+      .van-swipe__indicator {
+        background-color: #056534;
+      }
+    }
     .ecologic {
       padding: 63px 0 127px 0;
       .ecologic-wrap {
@@ -905,16 +1010,60 @@ export default {
           .about-info-title {
             margin-bottom: 20px;
           }
+          .about-info-content {
+            font-size: 13px;
+            line-height: 24px;
+            .info-tips {
+              color: #999;
+            }
+          }
         }
         .about-img {
           float: none;
+          img {
+            width: 100%;
+            height: auto;
+            box-sizing: border-box;
+          }
+        }
+      }
+      .ecologic {
+        .ecologic-wrap {
+          .ew-info {
+            height: 300px;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+          }
+          .ew-img {
+            position: relative;
+            width: 80%;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+            top: -45px;
+          }
         }
       }
       .intro {
+        padding: 40px 0 20px 0;
         .intro-wrapper {
           width: 90%;
           max-width: 90%;
           min-width: 90%;
+        }
+      }
+      .media {
+        .media-wrap {
+          .mw-content {
+            .mw-ct-list {
+              li {
+                display: block;
+                margin-right: 0;
+                margin-bottom: 10px;
+              }
+            }
+          }
         }
       }
     }

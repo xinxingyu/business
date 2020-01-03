@@ -8,18 +8,24 @@
       <!-- main content -->
       <div class="main-box">
         <router-view />
-        <FooterBox></FooterBox>
+        <template v-if="!isMobile">
+          <FooterBox></FooterBox>
+        </template>
+        <template v-else>
+          <FooterBoxMo></FooterBoxMo>
+        </template>
       </div>
     </div>
     <!-- mobile navagation -->
-    <template v-show="isOpen">
-      <HeaderNavMo />
-    </template>
+    <!-- :class="[!isOpen ? 'monav-slideout' : 'monav-slidein', 'app-main']" -->
+
+    <HeaderNavMo :isShow="isOpen" />
   </div>
 </template>
 
 <script>
 import FooterBox from "components/FooterBox";
+import FooterBoxMo from "components/FooterBoxMo";
 import HeaderNavMo from "components/HeaderNavMo";
 import HeaderNav from "components/HeaderNav";
 import HeaderMo from "components/HeaderMo";
@@ -35,6 +41,7 @@ export default {
     HeaderNav,
     HeaderMo,
     FooterBox,
+    FooterBoxMo,
     HeaderNavMo
   },
   data() {
@@ -89,6 +96,12 @@ a {
   min-width: 1171px;
   margin: 0 auto;
 }
+.ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  display: block;
+}
 .app-slideout {
   transform: translate3d(80%, 0, 0);
   transition: transform 0.25s ease 0s;
@@ -97,9 +110,19 @@ a {
   transform: translate3d(0, 0, 0);
   transition: transform 0.25s ease 0s;
 }
+
+.monav-slideout {
+  transform: translate3d(-80%, 0, 0);
+  transition: transform 0.25s ease 0s;
+}
+.monav-slidein {
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.25s ease 0s;
+}
+
 .fadeInUp {
   visibility: visible;
-  animation: fadeInUp 1.2s ease-out forwards;
+  animation: fadeInUp 0.8s ease-out forwards;
 }
 
 @keyframes fadeInUp {
@@ -135,6 +158,13 @@ body,
       overflow-x: hidden;
       overflow-y: scroll;
     }
+  }
+}
+@media screen and (max-width: 1070px) {
+  .center {
+    width: 90%;
+    max-width: 90%;
+    min-width: 90%;
   }
 }
 </style>

@@ -150,6 +150,7 @@ export default {
   padding: 0;
   outline: none;
   border: none;
+  background-color: transparent;
 }
 
 .vue-tabs__nav-item.--active {

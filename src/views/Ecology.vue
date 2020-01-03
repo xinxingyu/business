@@ -13,16 +13,21 @@
         <li
           href="#"
           class="content-list-item"
-          v-for="item in ecologyList"
+          v-for="(item, index) in ecologyList"
           v-bind:key="item.id"
         >
-          <div class="item-img">
-            <img :src="item.imgPath" alt="" srcset="" />
-          </div>
-          <div class="item-wrapper">
-            <p class="item-wrap-title">{{ item.title }}</p>
-            <p class="item-wrap-tips">{{ item.tips }}</p>
-          </div>
+          <AnimateBox
+            :delayTime="getIndex(index)"
+            style="display: inline-block;"
+          >
+            <div class="item-img">
+              <img :src="item.imgPath" alt="" srcset="" />
+            </div>
+            <div class="item-wrapper">
+              <p class="item-wrap-title">{{ item.title }}</p>
+              <p class="item-wrap-tips">{{ item.tips }}</p>
+            </div>
+          </AnimateBox>
         </li>
       </ul>
     </div>
@@ -30,6 +35,8 @@
 </template>
 
 <script>
+import AnimateBox from "components/AnimateBox.vue";
+
 const headerBg = require("assets/images/home_bg.jpg");
 const ecologyList = [
   {
@@ -59,12 +66,24 @@ const ecologyList = [
 ];
 export default {
   name: "ecology",
-  components: {},
+  components: { AnimateBox },
   data: function() {
     return { ecologyList, headerBg };
   },
   mounted() {},
-  methods: {}
+  methods: {
+    getIndex(item) {
+      if (item / 3 < 1) {
+        return item;
+      } else {
+        const yu = (item / 3).toString().split(".");
+        if (!yu[1]) return 0;
+
+        const mall = yu[1];
+        return Math.round((mall / Math.pow(10, mall.length)) * 3);
+      }
+    }
+  }
 };
 </script>
 <style lang="less" scoped>

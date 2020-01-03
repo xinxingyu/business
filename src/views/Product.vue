@@ -12,7 +12,10 @@
       <p class="ct-title">有机食材</p>
       <ul class="ct-list">
         <li v-for="(item, index) in foodList" v-bind:key="item.id">
-          <AnimateBox :delayTime="index + 1" style="display: inline-block;">
+          <AnimateBox
+            :delayTime="getIndex(index)"
+            style="display: inline-block;"
+          >
             <img :src="item.img" alt="" />
             <p class="ct-list-item-p">{{ item.name }}</p>
           </AnimateBox>
@@ -26,8 +29,17 @@
       <div class="center">
         <p class="ct-title">海神系列</p>
         <ul class="ct-intro">
-          <li><img src="../assets/images/home/itr1.jpg" alt="" srcset="" /></li>
-          <li><img src="../assets/images/home/itr2.jpg" alt="" srcset="" /></li>
+          <li>
+            <AnimateBox :delayTime="0" style="display: inline-block;">
+              <img src="../assets/images/home/itr1.jpg" alt="" srcset="" />
+            </AnimateBox>
+          </li>
+
+          <li>
+            <AnimateBox :delayTime="1" style="display: inline-block;">
+              <img src="../assets/images/home/itr2.jpg" alt="" srcset="" />
+            </AnimateBox>
+          </li>
         </ul>
       </div>
     </div>
@@ -35,8 +47,16 @@
       <div class="center">
         <p class="ct-title">牡丹籽油</p>
         <ul class="ct-intro">
-          <li><img src="../assets/images/home/itr1.jpg" alt="" srcset="" /></li>
-          <li><img src="../assets/images/home/itr2.jpg" alt="" srcset="" /></li>
+          <li>
+            <AnimateBox :delayTime="0" style="display: inline-block;">
+              <img src="../assets/images/home/itr1.jpg" alt="" srcset="" />
+            </AnimateBox>
+          </li>
+          <li>
+            <AnimateBox :delayTime="0" style="display: inline-block;">
+              <img src="../assets/images/home/itr2.jpg" alt="" srcset="" />
+            </AnimateBox>
+          </li>
         </ul>
       </div>
     </div>
@@ -92,14 +112,13 @@ export default {
   mounted() {},
   methods: {
     getIndex(item) {
-      if (item / 4 <= 1) {
-        return item - 1;
+      if (item / 4 < 1) {
+        return item;
       } else {
         const yu = (item / 4).toString().split(".");
         if (!yu[1]) return 0;
 
         const mall = yu[1];
-        console.log(mall.length);
         return (mall / Math.pow(10, mall.length)) * 4;
       }
     }

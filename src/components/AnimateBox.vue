@@ -39,9 +39,9 @@ export default {
   methods: {
     init() {
       window.addEventListener("scroll", this.handleScroll, true);
+      this.handleScroll();
     },
     handleScroll() {
-      // console.log(e);
       const offset = this.$el.getBoundingClientRect();
       const offsetTop = offset.top;
       const offsetBottom = offset.bottom;

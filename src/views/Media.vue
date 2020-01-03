@@ -15,51 +15,22 @@
         <tabs transitionName="fade">
           <tab :title="'公司活动'">
             <ul class="media-ul">
-              <li>
-                <dl>
-                  <dt>
-                    <img
-                      src="http://www.neofarmer.cn/wp-content/themes/neo/src/images/bannerpic/b_00.jpg"
-                      alt=""
-                    />
-                  </dt>
-                  <dd>
-                    <span
-                      >李克强对“华龙一号” 福清核电五号机组建设工作
-                      作出重要批示</span
-                    >
-                    <span>12-06</span>
-                    <span
-                      >李克强对“华龙一号”福清核电5号机组建设工作 作出重要批示
-                      12-06
-                      中共中央政治局常委、国务院总理李克强日前对“华龙一号”</span
-                    >
-                    <span>详情</span>
-                  </dd>
-                </dl>
-              </li>
-              <li>
-                <dl>
-                  <dt>
-                    <img
-                      src="http://www.neofarmer.cn/wp-content/themes/neo/src/images/bannerpic/b_00.jpg"
-                      alt=""
-                    />
-                  </dt>
-                  <dd>
-                    <span
-                      >李克强对“华龙一号” 福清核电五号机组建设工作
-                      作出重要批示</span
-                    >
-                    <span>12-06</span>
-                    <span
-                      >李克强对“华龙一号”福清核电5号机组建设工作 作出重要批示
-                      12-06
-                      中共中央政治局常委、国务院总理李克强日前对“华龙一号”</span
-                    >
-                    <span>详情</span>
-                  </dd>
-                </dl>
+              <li v-for="item in mediaInfo" v-bind:key="item.id">
+                <AnimateBox
+                  style="display: inline-block;border-bottom: solid 1px #c3c3c3;"
+                >
+                  <dl>
+                    <dt>
+                      <img :src="item.headImg" alt="" />
+                    </dt>
+                    <dd>
+                      <span>{{ item.title }}</span>
+                      <span>{{ item.time }}</span>
+                      <span>{{ item.content }}</span>
+                      <span>详情</span>
+                    </dd>
+                  </dl>
+                </AnimateBox>
               </li>
             </ul>
           </tab>
@@ -82,20 +53,40 @@
 </template>
 <script>
 import { Tabs, Tab } from "vue-tmn-tabs";
+import AnimateBox from "components/AnimateBox.vue";
+const MediaInfo = {
+  headImg:
+    "http://www.neofarmer.cn/wp-content/themes/neo/src/images/bannerpic/b_00.jpg",
+  title: "李克强对“华龙一号” 福清核电五号机组建设工作作出重要批示1",
+  time: "12-06",
+  content:
+    "李克强对“华龙一号”福清核电5号机组建设工作 作出重要批示12-06中共中央政治局常委、国务院总理李克强日前对“华龙一号”",
+  more: ""
+};
 
 export default {
   name: "home",
   components: {
     Tab,
-    Tabs
+    Tabs,
+    AnimateBox
   },
   data: function() {
     return {
       galleryThumbs: null,
-      galleryTop: null
+      galleryTop: null,
+      mediaInfo: []
     };
   },
-  mounted() {}
+  mounted() {
+    for (let index = 0; index < 10; index++) {
+      this.mediaInfo.push(
+        Object.assign({}, MediaInfo, {
+          id: index
+        })
+      );
+    }
+  }
 };
 </script>
 <style lang="less">
@@ -137,7 +128,7 @@ export default {
       }
     }
     .intro-container-box {
-      height: 700px;
+      // height: 700px;
     }
   }
 }
@@ -159,6 +150,7 @@ export default {
   padding: 0;
   outline: none;
   border: none;
+  background-color: transparent;
 }
 
 .vue-tabs__nav-item.--active {
@@ -189,7 +181,7 @@ export default {
 .media-ul {
   li {
     list-style: none;
-    border-bottom: solid 1px #c3c3c3;
+    // border-bottom: solid 1px #c3c3c3;
     dl {
       display: flex;
       dt {
@@ -206,7 +198,7 @@ export default {
         span {
           display: block;
           font-size: 14px;
-          line-height: 20px;
+          line-height: 27px;
           text-align: left;
           color: #8d8c8c;
         }

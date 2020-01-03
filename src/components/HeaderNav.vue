@@ -74,6 +74,20 @@ export default {
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
   }
+
+  .router-link-exact-active {
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      width: 100%;
+      background: #038a03;
+    }
+  }
+  .router-link-active:before {
+  }
 }
 .header-nav {
   text-align: center;
@@ -89,7 +103,11 @@ export default {
     height: 100%;
     vertical-align: middle;
     margin: 0;
+    transition: all 0.36s ease;
 
+    &:hover {
+      box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.12);
+    }
     .nav-li-router {
       position: relative;
       display: inline-block;
@@ -100,18 +118,5 @@ export default {
       color: #595959;
     }
   }
-}
-.router-link-exact-active {
-  &::before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 3px;
-    width: 100%;
-    background: #038a03;
-  }
-}
-.router-link-active:before {
 }
 </style>

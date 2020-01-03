@@ -6,10 +6,14 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
+    path: "/home",
     name: "home",
-    alias: "/home",
+    // alias: "/home",
     component: Home
+  },
+  {
+    path: "/",
+    redirect: "home"
   },
   {
     path: "/about",
