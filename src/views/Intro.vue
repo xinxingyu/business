@@ -35,34 +35,44 @@
             </AnimateBox>
           </tab>
           <tab :title="'企业文化'">
-            <span class="tab-title">企业文化</span>
-            <p class="tab-text">
-              基金将通过竞赛、评选、成果转化、奖励等办法，培养一批创新人才，培育一批创新成果，树立一批创新典型，倡导创新文化，引导青年树立自主创新意识，提高自主创新能力
-            </p>
+            <AnimateBox>
+              <span class="tab-title">企业文化</span>
+              <p class="tab-text">
+                基金将通过竞赛、评选、成果转化、奖励等办法，培养一批创新人才，培育一批创新成果，树立一批创新典型，倡导创新文化，引导青年树立自主创新意识，提高自主创新能力
+              </p>
+            </AnimateBox>
           </tab>
           <tab :title="'品牌体系'">
-            <span class="tab-title">品牌体系</span>
-            <p class="tab-text">
-              投身创业创新实践；通过项目竞赛、贴息贷款、导师带徒等办法，改变青年就业观念该基金理事会将每年定期组织开展“创业浙江”大赛，评选产生的创新奖获得者将得到一定金额的奖励主要提供农业实用技术和来料加工业务指导，重点鼓励发展现代农业
-            </p>
+            <AnimateBox>
+              <span class="tab-title">品牌体系</span>
+              <p class="tab-text">
+                投身创业创新实践；通过项目竞赛、贴息贷款、导师带徒等办法，改变青年就业观念该基金理事会将每年定期组织开展“创业浙江”大赛，评选产生的创新奖获得者将得到一定金额的奖励主要提供农业实用技术和来料加工业务指导，重点鼓励发展现代农业
+              </p>
+            </AnimateBox>
           </tab>
           <tab :title="'企业荣誉'">
-            <span class="tab-title">企业荣誉</span>
-            <p class="tab-text">
-              中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。公司荣获全国质量管理奖、首届浙江省政府质量奖、首届温州市市长质量奖。
-            </p>
+            <AnimateBox>
+              <span class="tab-title">企业荣誉</span>
+              <p class="tab-text">
+                中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。公司荣获全国质量管理奖、首届浙江省政府质量奖、首届温州市市长质量奖。
+              </p>
+            </AnimateBox>
           </tab>
           <tab :title="'发展历程'">
-            <span>发展历程</span>
-            <p>
-              中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。公司荣获全国质量管理奖、首届浙江省政府质量奖、首届温州市市长质量奖。
-            </p>
+            <AnimateBox>
+              <span>发展历程</span>
+              <p>
+                中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。公司荣获全国质量管理奖、首届浙江省政府质量奖、首届温州市市长质量奖。
+              </p>
+            </AnimateBox>
           </tab>
           <tab :title="'发展愿景'">
-            <span>发展愿景</span>
-            <p>
-              中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。公司荣获全国质量管理奖、首届浙江省政府质量奖、首届温州市市长质量奖。
-            </p>
+            <AnimateBox>
+              <span>发展愿景</span>
+              <p>
+                中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。公司荣获全国质量管理奖、首届浙江省政府质量奖、首届温州市市长质量奖。
+              </p>
+            </AnimateBox>
           </tab>
         </tabs>
       </div>
@@ -134,15 +144,19 @@ export default {
   }
 }
 .vue-tabs {
-  display: flex;
+  & > div {
+    display: inline-block;
+  }
 }
 
 .vue-tabs__nav {
+  display: inline-block;
+  vertical-align: top;
   background: transparent;
   margin-right: 11%;
-  display: flex;
   flex-direction: column;
   align-items: baseline;
+  width: 64px;
 }
 .vue-tabs__nav-item {
   font-size: 16px;
@@ -160,7 +174,8 @@ export default {
 }
 
 .vue-tabs__panel {
-  width: 920px;
+  display: inline-block;
+  width: 976px;
   outline: none;
 }
 
@@ -180,6 +195,46 @@ export default {
     font-size: 14px;
     line-height: 30px;
     text-align: left;
+  }
+}
+@media screen and (max-width: 1070px) {
+  .intro {
+    .intro-banner {
+      height: 284px;
+    }
+    .intro-container-text {
+      display: none;
+    }
+    .intro-container {
+      .intro-container-header {
+        padding: 20px;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      .intro-container-box {
+        height: auto;
+        .vue-tabs {
+          .vue-tabs__nav {
+            display: flex;
+            margin: 0;
+            width: 100%;
+            flex-direction: row;
+            padding: 0 20px;
+            box-sizing: border-box;
+            .vue-tabs__nav-item {
+              flex: 1;
+              padding: 10px;
+              line-height: 25px;
+            }
+          }
+          .vue-tabs__panel {
+            padding: 10px 20px;
+            width: 100%;
+            box-sizing: border-box;
+          }
+        }
+      }
+    }
   }
 }
 </style>

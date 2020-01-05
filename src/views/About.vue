@@ -145,4 +145,34 @@ export default {
     }
   }
 }
+@media screen and (max-width: 1070px) {
+  .about {
+    .header {
+      height: 180px;
+    }
+    .content {
+      .content-info {
+        display: block;
+        width: 100%;
+      }
+      .content-list {
+        display: block;
+        margin-left: 0;
+        margin-top: 60px;
+        li {
+          width: 48%;
+          margin: 2px;
+          // margin: 0;
+          img {
+            width: 100%;
+            height: auto;
+          }
+        }
+      }
+    }
+    .antbox {
+      display: block;
+    }
+  }
+}
 </style>

@@ -1,6 +1,9 @@
 <template>
   <div class="media">
-    <div class="intro-banner"></div>
+    <div
+      class="header"
+      :style="{ backgroundImage: 'url(' + headerBg + ')' }"
+    ></div>
     <div class="intro-container center">
       <div class="intro-container-header">
         <div class="intro-container-title">
@@ -44,9 +47,7 @@
                 v-bind:key="item.id"
                 class="media-ul-item"
               >
-                <AnimateBox
-                  style="display: inline-block;border-bottom: solid 1px #c3c3c3;"
-                >
+                <AnimateBox class="antbox">
                   <dl @click="routerTo('/media', { id: 2222 })">
                     <dt>
                       <img :src="item.headImg" alt="" />
@@ -78,18 +79,16 @@
           <div v-show="currentTab === 2">
             <ul class="media-ul" v-show="!isShowDetail">
               <li v-for="item in mediaInfo2" v-bind:key="item.id">
-                <AnimateBox
-                  style="display: inline-block;border-bottom: solid 1px #c3c3c3;"
-                >
+                <AnimateBox class="antbox">
                   <dl @click="routerTo('/media', { id: 2222 })">
                     <dt>
                       <img :src="item.headImg" alt="" />
                     </dt>
                     <dd>
-                      <span>{{ item.title }}</span>
-                      <span>{{ item.time }}</span>
-                      <span>{{ item.content }}</span>
-                      <span>详情</span>
+                      <span class="item-title">{{ item.title }}</span>
+                      <span class="item-time">{{ item.time }}</span>
+                      <span class="item-content">{{ item.content }}</span>
+                      <span class="item-more">详情</span>
                     </dd>
                   </dl>
                 </AnimateBox>
@@ -112,18 +111,16 @@
           <div v-show="currentTab === 3">
             <ul class="media-ul" v-show="!isShowDetail">
               <li v-for="item in mediaInfo3" v-bind:key="item.id">
-                <AnimateBox
-                  style="display: inline-block;border-bottom: solid 1px #c3c3c3;"
-                >
+                <AnimateBox class="antbox">
                   <dl @click="routerTo('/media', { id: 2222 })">
                     <dt>
                       <img :src="item.headImg" alt="" />
                     </dt>
                     <dd>
-                      <span>{{ item.title }}</span>
-                      <span>{{ item.time }}</span>
-                      <span>{{ item.content }}</span>
-                      <span>详情</span>
+                      <span class="item-title">{{ item.title }}</span>
+                      <span class="item-time">{{ item.time }}</span>
+                      <span class="item-content">{{ item.content }}</span>
+                      <span class="item-more">详情</span>
                     </dd>
                   </dl>
                 </AnimateBox>
@@ -150,6 +147,8 @@
 </template>
 <script>
 import AnimateBox from "components/AnimateBox.vue";
+
+const headerBg = require("assets/images/home_bg.jpg");
 const MediaInfo = {
   headImg:
     "http://www.neofarmer.cn/wp-content/themes/neo/src/images/bannerpic/b_00.jpg",
@@ -167,6 +166,7 @@ export default {
   },
   data: function() {
     return {
+      headerBg,
       currentTab: 1,
       id: null,
       isShowDetail: false,
@@ -239,10 +239,12 @@ export default {
 @green: #038a03;
 @tips: #8d8c8c;
 .media {
-  .intro-banner {
+  .header {
     width: 100%;
-    height: 380px;
-    background: seagreen;
+    height: 300px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
   }
   .intro-container {
     .intro-container-header {
@@ -387,6 +389,80 @@ export default {
           }
         }
       }
+    }
+  }
+  .antbox {
+    display: inline-block;
+    border-bottom: solid 1px #c3c3c3;
+  }
+}
+@media screen and (max-width: 1070px) {
+  .media {
+    .header {
+      height: 180px;
+    }
+    .intro-container {
+      .intro-container-header {
+        .intro-container-title {
+          float: none;
+          width: 100%;
+        }
+        .intro-container-text {
+          float: none;
+          width: 100%;
+        }
+      }
+
+      .intro-container-box {
+        .tab {
+          display: flex;
+          width: 100%;
+          margin: 0;
+          padding-top: 40px;
+          .tab-item {
+            flex: 1;
+            width: auto;
+            text-align: center;
+          }
+        }
+        .content {
+          width: 100%;
+          .media-ul {
+            .media-ul-item,
+            li {
+              width: 100%;
+              height: auto;
+              dl {
+                width: 100%;
+                dt {
+                  margin: 0;
+                }
+                dd {
+                  width: 100%;
+                  height: auto;
+                  padding-top: 20px;
+                }
+                .item-title {
+                  word-break: break-all;
+                  text-overflow: ellipsis;
+                  display: -webkit-box;
+                  -webkit-box-orient: vertical;
+                  -webkit-line-clamp: 1;
+                  overflow: hidden;
+                }
+                .item-more {
+                  position: relative;
+                  padding-top: 10px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .antbox {
+      display: block;
+      border-bottom: 1px solid #e9e9e9;
     }
   }
 }

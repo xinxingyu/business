@@ -12,10 +12,7 @@
       <p class="ct-title">有机食材</p>
       <ul class="ct-list">
         <li v-for="(item, index) in foodList" v-bind:key="item.id">
-          <AnimateBox
-            :delayTime="getIndex(index)"
-            style="display: inline-block;"
-          >
+          <AnimateBox :delayTime="getIndex(index)" class="antbox">
             <img :src="item.img" alt="" />
             <p class="ct-list-item-p">{{ item.name }}</p>
           </AnimateBox>
@@ -30,7 +27,7 @@
         <p class="ct-title">海神系列</p>
         <ul class="ct-intro">
           <li>
-            <AnimateBox :delayTime="0" style="display: inline-block;">
+            <AnimateBox :delayTime="0" class="antbox">
               <img src="../assets/images/home/itr1.jpg" alt="" srcset="" />
             </AnimateBox>
           </li>
@@ -210,6 +207,52 @@ export default {
     .ct-img {
       width: 100%;
       height: 504px;
+    }
+  }
+  .antbox {
+    display: inline-block;
+  }
+}
+@media screen and (max-width: 1070px) {
+  .product {
+    .content {
+      padding: 60px 0;
+      .ct-title {
+        padding: 0 0 30px 0;
+      }
+      .ct-list {
+        overflow: hidden;
+        li {
+          width: 48%;
+          margin: 1%;
+          float: left;
+          display: block;
+          &:nth-child(2n) {
+            margin-right: 0;
+          }
+          img {
+            width: 100%;
+            height: auto;
+          }
+        }
+      }
+      .ct-intro {
+        li {
+          display: block;
+          margin: 0;
+          img {
+            width: 100%;
+            height: auto;
+          }
+        }
+      }
+      .ct-img {
+        width: 100%;
+        height: auto;
+      }
+    }
+    .antbox {
+      display: block;
     }
   }
 }

@@ -375,12 +375,14 @@ const imagesList = [
   }
 ];
 
-const VantSwiperSlide = [{
-  id: 0,
-  name: '红孩儿有机厨房',
-  tips:'Red Baby Organic Kitchen',
-  class: 'thumbs1'
-},{
+const VantSwiperSlide = [
+  {
+    id: 0,
+    name: "红孩儿有机厨房",
+    tips:"Red Baby Organic Kitchen",
+    class: "thumbs1"
+  },
+  {
   id: 1,
   name: '美时美景旅行社',
   tips:'Meishi Meimei travel agency',

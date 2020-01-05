@@ -16,10 +16,7 @@
           v-for="(item, index) in ecologyList"
           v-bind:key="item.id"
         >
-          <AnimateBox
-            :delayTime="getIndex(index)"
-            style="display: inline-block;"
-          >
+          <AnimateBox :delayTime="getIndex(index)" class="antbox">
             <div class="item-img">
               <img :src="item.imgPath" alt="" srcset="" />
             </div>
@@ -71,8 +68,12 @@ export default {
     return { ecologyList, headerBg };
   },
   mounted() {},
+  inject: ["isMobile"],
   methods: {
     getIndex(item) {
+      if (this.isMobile) {
+        return 0;
+      }
       if (item / 3 < 1) {
         return item;
       } else {
@@ -186,6 +187,35 @@ export default {
           }
         }
       }
+    }
+  }
+  .antbox {
+    display: inline-block;
+  }
+}
+@media screen and (max-width: 1070px) {
+  .ecology {
+    .header {
+      height: 180px;
+    }
+    .title {
+      margin-top: 60px;
+    }
+    .content {
+      .content-list {
+        .content-list-item {
+          margin: 0;
+          .item-img {
+            img {
+              width: 100%;
+              height: auto;
+            }
+          }
+        }
+      }
+    }
+    .antbox {
+      display: block;
     }
   }
 }
