@@ -17,21 +17,13 @@
       </div>
       <div class="swiper-container gallery-thumbs">
         <div class="swiper-wrapper">
-          <div class="swiper-slide thumbs1">
-            <p class="thumbs-title">红孩儿有机厨房</p>
-            <p class="thumbs-eng">Red Baby Organic Kitchen</p>
-          </div>
-          <div class="swiper-slide thumbs2">
-            <p class="thumbs-title">美时美景旅行社</p>
-            <p class="thumbs-eng">Meishi Meimei travel agency</p>
-          </div>
-          <div class="swiper-slide thumbs3">
-            <p class="thumbs-title">元素力量健身会所</p>
-            <p class="thumbs-eng">Element strength fitness club</p>
-          </div>
-          <div class="swiper-slide thumbs4">
-            <p class="thumbs-title">逸养 · 生态家</p>
-            <p class="thumbs-eng">Ecological home</p>
+          <div
+            :class="['swiper-slide', item.class]"
+            v-for="item in mainSwiperSlide"
+            v-bind:key="item.id"
+          >
+            <p class="thumbs-title">{{ item.name }}</p>
+            <p class="thumbs-eng">{{ item.tips }}</p>
           </div>
         </div>
       </div>
@@ -76,18 +68,22 @@
               <p class="info-tips">About us</p>
             </div>
             <div class="about-info-content">
-              <p class="info-main">中泰高科控股集团股份有限公司</p>
+              <p class="info-main">北京百瑞众康农业科技发展股份有限公司</p>
               <p class="info-tips">
-                集团由中国知名金融师马岩松于1987年建立，是一所以东方自然体验为基础和出发点进行设计的国际建筑事务所。近年围绕“山水城市”这一核心设计哲学，MAD期望通过创新建筑创造社会和人们之间的平衡年，通过竞赛赢得卢卡斯叙事艺术博物馆设计权
-                ...
+                百瑞众康股份创立于2010年，总部设立在北京，是一家以现代农业为核心，集研发、生产、销售、服务于一体的集团化企业。围绕亿万家庭‘衣、食、住、行、医、运动’健康品质生活，汇聚有机农产品、家居微环境改善、旅游康养、科学健养于一体，构建的跨行业整合、全域智慧型健康生态圈。
               </p>
               <p class="info-more">
-                <a href="www.baidu.com">MORE</a>
+                <router-link
+                  :to="{
+                    path: '/media'
+                  }"
+                  >MORE</router-link
+                >
               </p>
             </div>
           </div>
           <div class="about-img">
-            <img src="../assets/images/home/home_about.jpg" alt="" srcset="" />
+            <img src="../assets/images/home2/home_about.png" alt="" srcset="" />
           </div>
         </div>
       </AnimateBox>
@@ -288,12 +284,11 @@
                 <span>production base</span>
               </div>
               <p class="ew-info-content">
-                中国时代远望科技有限公司成立于2003年11月，是中国航天时代电子公司的全
-                资子公司。2003年6月，中国航天时代电子公司（简称时代电子公司）成立，为整合系统资源，增强名用产品市场竞争力，将航天一院的愿望科技集团公司及其所属企业所属公司...
+                百瑞众康股份践行“服务亿万家庭，打造健康品质生活第一平台”企业愿景，紧紧围绕家庭成员‘衣、食、住、行、医、运动’等生活要素，为全民健康，从食品安全、科学健身运动、旅游康养直至居家微环境改善，构建跨行业整合、全域智慧型健康生态圈，实现人人都畅享健康品质生活的梦想。
               </p>
             </div>
             <div class="ew-img">
-              <img src="../assets/images/home/home_ew.jpg" alt="" />
+              <img src="../assets/images/home2/home_ew.jpg" alt="" />
             </div>
           </div>
         </div>
@@ -320,19 +315,31 @@
             <div class="mw-content">
               <ul class="mw-ct-list">
                 <li
-                  v-for="(media, index) in MediaContentList"
+                  v-for="(media, index) in mediaContentList"
                   v-bind:key="media.id"
                 >
                   <AnimateBox
                     :delayTime="index + 1"
                     style="display: inline-block;"
                   >
-                    <img class="list-img" :src="media.img" alt="" srcset="" />
-                    <div class="list-content">
-                      <p class="title">{{ media.title }}</p>
-                      <p class="content">{{ media.content }}</p>
-                    </div>
-                    <div class="list-more">more</div>
+                    <router-link
+                      :to="{
+                        path: '/media',
+                        query: { catid: media.catid, aid: media.id }
+                      }"
+                    >
+                      <img
+                        class="list-img"
+                        :src="media.thumb"
+                        alt=""
+                        srcset=""
+                      />
+                      <div class="list-content">
+                        <p class="title">{{ media.title }}</p>
+                        <p class="content">{{ media.description }}</p>
+                      </div>
+                      <div class="list-more">more</div>
+                    </router-link>
                   </AnimateBox>
                 </li>
               </ul>
@@ -342,7 +349,7 @@
       </AnimateBox>
 
       <div class="more">
-        <a href="">MORE</a>
+        <router-link :to="{ path: '/media' }">MORE</router-link>
       </div>
     </div>
   </div>
@@ -352,21 +359,20 @@
 import Swiper from "swiper/js/swiper.min.js";
 // import Swiper from "assets/swiper/swiper.min.js";
 import AnimateBox from "components/AnimateBox.vue";
+import urls from "../utils/urls";
 
 const imagesList = [
   {
     index: 0,
-    path: require("assets/images/home_bg.jpg")
+    path: require("assets/images/home2/1.png")
   },
   {
     index: 1,
-    path:
-      "http://www.neofarmer.cn/wp-content/themes/neo/src/images/bannerpic/b_00.jpg"
+    path: require("assets/images/home2/2.jpg")
   },
   {
     index: 2,
-    path:
-      "http://www.neofarmer.cn/wp-content/themes/neo/src/images/bannerpic/b_00.jpg"
+    path: require("assets/images/home2/3.jpg")
   },
   {
     index: 3,
@@ -375,57 +381,85 @@ const imagesList = [
   }
 ];
 
-const VantSwiperSlide = [
+const mainSwiperSlide = [
   {
     id: 0,
-    name: "红孩儿有机厨房",
-    tips:"Red Baby Organic Kitchen",
+    name: "健身",
+    tips: "Fitness Club",
     class: "thumbs1"
   },
   {
-  id: 1,
-  name: '美时美景旅行社',
-  tips:'Meishi Meimei travel agency',
-  class: 'thumbs2'
-},{
-  id: 2,
-  name: '元素力量健身会所',
-  tips:'Element strength fitness club',
-  class: 'thumbs3'
-},{
-  id: 3,
-  name: '逸养 · 生态家',
-  tips:'Ecological home',
-  class: 'thumbs4'
-}];
+    id: 1,
+    name: "旅行社",
+    tips: "Travel Agency",
+    class: "thumbs2"
+  },
+  {
+    id: 2,
+    name: "有机厨房",
+    tips: "Organic kitchen",
+    class: "thumbs3"
+  },
+  {
+    id: 3,
+    name: "逸养 · 生态家",
+    tips: "Ecological home",
+    class: "thumbs4"
+  }
+];
 
 const IntroContentList1 = [
   {
     id: 1,
-    imgPath: require("assets/images/home/itr1.jpg"),
+    imgPath: require("assets/images/product/2-1.jpg"),
     title: "海神系列",
     tips: "Poseidon series"
   },
   {
     id: 2,
-    imgPath: require("assets/images/home/itr2.jpg"),
+    imgPath: require("assets/images/product/3-1.jpg"),
     title: "牡丹系列",
     tips: "Peony series"
   },
   {
     id: 3,
-    imgPath: require("assets/images/home/itr3.jpg"),
+    imgPath: require("assets/images/product/1-1.jpg"),
     title: "有机食材",
     tips: "Organic food"
   },
   {
     id: 4,
-    imgPath: require("assets/images/home/itr4.jpg"),
-    title: "有机食材2",
+    imgPath: require("assets/images/product/1-2.jpg"),
+    title: "有机食材",
     tips: "Organic food"
   }
 ];
-const IntroContentList2 = IntroContentList1;
+const IntroContentList2 = [
+  {
+    id: 1,
+    imgPath: require("assets/images/product/2-2.jpg"),
+    title: "海神系列",
+    tips: "Poseidon series"
+  },
+  {
+    id: 2,
+    imgPath: require("assets/images/product/3-1.jpg"),
+    title: "牡丹系列",
+    tips: "Peony series"
+  },
+  {
+    id: 3,
+    imgPath: require("assets/images/product/1-3.jpg"),
+    title: "有机食材",
+    tips: "Organic food"
+  },
+  {
+    id: 4,
+    imgPath: require("assets/images/product/1-4.jpg"),
+    title: "有机食材",
+    tips: "Organic food"
+  }
+];
 
 const MediaList = [
   {
@@ -483,9 +517,11 @@ export default {
   data: function() {
     return {
       imagesList,
-      vantSwiperSlide: VantSwiperSlide,
+      mainSwiperSlide,
+      vantSwiperSlide: mainSwiperSlide,
       MediaList,
       MediaContentList,
+      mediaContentList: [],
       galleryThumbs: null,
       galleryTop: null,
       IntroContentSwiper1: null,
@@ -499,10 +535,11 @@ export default {
   inject: ["isMobile"],
   mounted() {
     this.initSwiper();
+    this.getData();
+    this.getSwiperData();
   },
   methods: {
     onChangeVanSwipe(index) {
-      console.log(index)
       this.currentVanSwipe = index;
     },
     onChangeVantSwipe(index) {
@@ -555,6 +592,43 @@ export default {
     },
     onClickMediaLink(link) {
       this.$router.push({ name: "media", params: { tid: link } });
+    },
+    getData() {
+      // this.loading = true;
+      this.fetchGet(urls.list, {
+        catid: 6
+      })
+        .then(res => {
+          if (res.status === 200) {
+            if (res.data) {
+              this.mediaContentList = res.data.slice(0, 3);
+            }
+            // this.loading = false;
+          } else {
+            // this.mediaInfo = [];
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    getSwiperData() {
+      this.fetchGet(urls.list, {
+        catid: 18
+      })
+        .then(res => {
+          if (res.status === 200) {
+            if (res.data) {
+              console.log("getSwiperData  18 ...", res.data);
+            }
+            // this.loading = false;
+          } else {
+            // this.mediaInfo = [];
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   }
 };
@@ -1049,6 +1123,7 @@ export default {
         .mw-ct-list {
           li {
             display: inline-block;
+            vertical-align: top;
             width: 380px;
             margin-right: 15px;
             &:last-child {

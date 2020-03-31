@@ -13,12 +13,12 @@
         <li
           href="#"
           class="content-list-item"
-          v-for="(item, index) in ecologyList"
+          v-for="(item, index) in info"
           v-bind:key="item.id"
         >
           <AnimateBox :delayTime="getIndex(index)" class="antbox">
             <div class="item-img">
-              <img :src="item.imgPath" alt="" srcset="" />
+              <img :src="item.thumb" alt="" srcset="" />
             </div>
             <div class="item-wrapper">
               <p class="item-wrap-title">{{ item.title }}</p>
@@ -33,8 +33,9 @@
 
 <script>
 import AnimateBox from "components/AnimateBox.vue";
+import urls from "../utils/urls";
 
-const headerBg = require("assets/images/home_bg.jpg");
+const headerBg = require("assets/images/ecology-banner.png");
 const ecologyList = [
   {
     id: 1,
@@ -65,9 +66,11 @@ export default {
   name: "ecology",
   components: { AnimateBox },
   data: function() {
-    return { ecologyList, headerBg };
+    return { ecologyList, headerBg, info: null };
   },
-  mounted() {},
+  mounted() {
+    this.getData();
+  },
   inject: ["isMobile"],
   methods: {
     getIndex(item) {
@@ -83,6 +86,23 @@ export default {
         const mall = yu[1];
         return Math.round((mall / Math.pow(10, mall.length)) * 3);
       }
+    },
+    getData() {
+      this.loading = true;
+      this.fetchGet(urls.list, {
+        catid: 17
+      })
+        .then(res => {
+          if (res.status === 200) {
+            this.info = res.data;
+            this.loading = false;
+          } else {
+            // this.mediaInfo = [];
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   }
 };

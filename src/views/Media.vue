@@ -13,7 +13,7 @@
         <div class="intro-container-text">
           <span>您的位置：</span><span @click="routerTo('/home')">首页</span> >
           <span @click="routerTo('/media')"> 新闻媒体 </span>
-          <span v-show="id"> > 详情</span>
+          <span v-show="catid"> > 详情</span>
         </div>
       </div>
       <div class="intro-container-box">
@@ -39,8 +39,12 @@
             <p class="tab-item-title">媒体报道</p>
           </div>
         </div>
+
         <div class="content">
-          <div v-show="currentTab === 1">
+          <div v-if="loading" class="loading">
+            正在加载中...
+          </div>
+          <div v-else>
             <ul class="media-ul" v-show="!isShowDetail">
               <li
                 v-for="item in mediaInfo"
@@ -48,14 +52,18 @@
                 class="media-ul-item"
               >
                 <AnimateBox class="antbox">
-                  <dl @click="routerTo('/media', { id: 2222 })">
+                  <dl
+                    @click="
+                      routerTo('/media', { catid: item.catid, aid: item.id })
+                    "
+                  >
                     <dt>
-                      <img :src="item.headImg" alt="" />
+                      <img :src="item.thumb" alt="" />
                     </dt>
                     <dd>
                       <span class="item-title">{{ item.title }}</span>
-                      <span class="item-time">{{ item.time }}</span>
-                      <span class="item-content">{{ item.content }}</span>
+                      <span class="item-time">{{ item.updatetime }}</span>
+                      <span class="item-content">{{ item.description }}</span>
                       <span class="item-more">详情</span>
                     </dd>
                   </dl>
@@ -63,81 +71,11 @@
               </li>
             </ul>
             <div class="media-detail" v-show="isShowDetail">
-              <span class="tab-title">公司简介</span>
-              <p>
-                PH是一种布宜诺斯艾利斯典型的住宅类型，这种住宅以高密度和低楼层著称。
-                项目是一个长期规划的收尾性空间，PH Lavallej
+              <p class="media-detail-title">{{ mediaInfoItem.title }}</p>
+              <p class="media-detail-time">
+                {{ mediaInfoItem.updatetime2 || "- | -" }}
               </p>
-              <p>
-                中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。
-              </p>
-              <p>
-                中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。
-              </p>
-            </div>
-          </div>
-          <div v-show="currentTab === 2">
-            <ul class="media-ul" v-show="!isShowDetail">
-              <li v-for="item in mediaInfo2" v-bind:key="item.id">
-                <AnimateBox class="antbox">
-                  <dl @click="routerTo('/media', { id: 2222 })">
-                    <dt>
-                      <img :src="item.headImg" alt="" />
-                    </dt>
-                    <dd>
-                      <span class="item-title">{{ item.title }}</span>
-                      <span class="item-time">{{ item.time }}</span>
-                      <span class="item-content">{{ item.content }}</span>
-                      <span class="item-more">详情</span>
-                    </dd>
-                  </dl>
-                </AnimateBox>
-              </li>
-            </ul>
-            <div class="media-detail" v-show="isShowDetail">
-              <span class="tab-title">公司简介</span>
-              <p>
-                PH是一种布宜诺斯艾利斯典型的住宅类型，这种住宅以高密度和低楼层著称。
-                项目是一个长期规划的收尾性空间，PH Lavallej
-              </p>
-              <p>
-                中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。
-              </p>
-              <p>
-                中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。
-              </p>
-            </div>
-          </div>
-          <div v-show="currentTab === 3">
-            <ul class="media-ul" v-show="!isShowDetail">
-              <li v-for="item in mediaInfo3" v-bind:key="item.id">
-                <AnimateBox class="antbox">
-                  <dl @click="routerTo('/media', { id: 2222 })">
-                    <dt>
-                      <img :src="item.headImg" alt="" />
-                    </dt>
-                    <dd>
-                      <span class="item-title">{{ item.title }}</span>
-                      <span class="item-time">{{ item.time }}</span>
-                      <span class="item-content">{{ item.content }}</span>
-                      <span class="item-more">详情</span>
-                    </dd>
-                  </dl>
-                </AnimateBox>
-              </li>
-            </ul>
-            <div class="media-detail" v-show="isShowDetail">
-              <span class="tab-title">公司简介</span>
-              <p>
-                PH是一种布宜诺斯艾利斯典型的住宅类型，这种住宅以高密度和低楼层著称。
-                项目是一个长期规划的收尾性空间，PH Lavallej
-              </p>
-              <p>
-                中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。
-              </p>
-              <p>
-                中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。
-              </p>
+              <div v-html="mediaInfoItem.content"></div>
             </div>
           </div>
         </div>
@@ -147,17 +85,9 @@
 </template>
 <script>
 import AnimateBox from "components/AnimateBox.vue";
+import urls from "../utils/urls";
 
-const headerBg = require("assets/images/home_bg.jpg");
-const MediaInfo = {
-  headImg:
-    "http://www.neofarmer.cn/wp-content/themes/neo/src/images/bannerpic/b_00.jpg",
-  title: "李克强对“华龙一号” 福清核电五号机组建设工作作出重要批示1",
-  time: "12-06",
-  content:
-    "李克强对“华龙一号”福清核电5号机组建设工作 作出重要批示12-06中共中央政治局常委、国务院总理李克强日前对“华龙一号”",
-  more: ""
-};
+const headerBg = require("assets/images/media-banner.png");
 
 export default {
   name: "home",
@@ -166,46 +96,74 @@ export default {
   },
   data: function() {
     return {
+      loading: true,
       headerBg,
-      currentTab: 1,
-      id: null,
+      currentTab: 1, //栏目索引
+      catid: null, //栏目ID
+      aid: null, //文章ID
       isShowDetail: false,
+      isWaitData: false, //等待数据
       mediaInfo: [],
-      mediaInfo2: [],
-      mediaInfo3: []
+      mediaInfoItem: {
+        content: null,
+        title: null
+      }, //某个文章
+      tabIds: {
+        1: 7,
+        2: 8,
+        3: 9
+      },
+      tabIdsRv: {
+        7: 1,
+        8: 2,
+        9: 3
+      }
     };
   },
   watch: {
     $route() {
-      this.id = this.$route.query.id; // 获取传来的参数
-      this.showDetail();
+      // 获取传来的参数
+      this.catid = this.$route.query.catid;
+      this.aid = this.$route.query.aid;
+
+      if (this.catid && this.aid) {
+        this.showDetail(true, this.aid);
+      } else {
+        this.showDetail(false, this.aid);
+      }
     }
   },
-  created() {
-    // this.id = this.$route.params.id
-  },
+  created() {},
   mounted() {
     this.handleTabAcative();
-
-    for (let index = 0; index < 10; index++) {
-      const nData = Object.assign({}, MediaInfo, {
-        id: index
-      });
-      this.mediaInfo.push(nData);
-      this.mediaInfo2.push(nData);
-      this.mediaInfo3.push(nData);
-    }
   },
   methods: {
     handleTabAcative() {
-      console.log(this.$route.params);
-      const { tid } = this.$route.params;
+      console.log("route", this.$route);
+
+      const tid = this.$route.params.tid || this.$route.query.tid;
+      const { catid, aid } = this.$route.query;
+
       if (tid) {
-        this.currentTab = tid;
+        this.currentTab = tid - 0;
+      } else if (catid) {
+        this.currentTab = this.tabIdsRv[catid] - 0;
+        this.catid = catid;
+        if (aid) {
+          this.aid = aid;
+          this.showDetail(true, aid);
+        }
       }
+
+      this.getData(this.currentTab);
     },
     onClickTab(index) {
       this.currentTab = index;
+      this.catid = null;
+      this.aid = null;
+
+      this.getData(this.currentTab);
+
       this.$nextTick().then(() => {
         this.routerTo("/media");
       });
@@ -216,21 +174,50 @@ export default {
         query: queryObj
       });
     },
-    goDetail() {
-      this.$router.push({
-        path: "/media",
-        name: `media`,
-        query: {
-          id: 8989
+    /**
+     * 显示和关闭文章详情
+     */
+    showDetail(show, aid) {
+      if (show) {
+        if (!this.mediaInfo || this.mediaInfo.length <= 0) {
+          this.isWaitData = true;
+        } else {
+          this.getMediaInfoContent(aid);
+          this.isShowDetail = true;
         }
-      });
-    },
-    showDetail() {
-      if (this.id) {
-        this.isShowDetail = true;
       } else {
         this.isShowDetail = false;
       }
+    },
+    getMediaInfoContent(aid) {
+      console.log("getMediaInfoContent..", aid, this.mediaInfo);
+      this.mediaInfo.forEach(item => {
+        console.log(item);
+        if (item.id === aid) {
+          this.mediaInfoItem = item;
+          return true;
+        }
+      });
+    },
+    getData(id) {
+      this.loading = true;
+      this.fetchGet(urls.list, {
+        catid: this.tabIds[id]
+      })
+        .then(res => {
+          if (res.status === 200) {
+            this.mediaInfo = res.data;
+            this.loading = false;
+            if (this.isWaitData) {
+              this.showDetail(true, this.aid);
+            }
+          } else {
+            // this.mediaInfo = [];
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   }
 };
@@ -239,6 +226,10 @@ export default {
 @green: #038a03;
 @tips: #8d8c8c;
 .media {
+  .loading {
+    font-size: 16px;
+    color: #035d03;
+  }
   .header {
     width: 100%;
     height: 300px;
@@ -375,17 +366,17 @@ export default {
           }
         }
         .media-detail {
-          color: #535353;
-          span {
+          padding-top: 70px;
+          text-align: center;
+
+          .media-detail-title {
             font-size: 18px;
-            line-height: 100px;
-            text-align: center;
-            display: block;
+            padding-bottom: 20px;
           }
-          p {
-            font-size: 14px;
-            line-height: 30px;
-            text-align: left;
+          .media-detail-time {
+            color: #535353;
+            font-size: 12px;
+            padding-bottom: 60px;
           }
         }
       }
@@ -398,6 +389,11 @@ export default {
 }
 @media screen and (max-width: 1070px) {
   .media {
+    .loading {
+      padding: 16px 0 0 0;
+      text-align: center;
+      font-size: 16px;
+    }
     .header {
       height: 180px;
     }

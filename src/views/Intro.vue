@@ -1,6 +1,9 @@
 <template>
   <div class="intro">
-    <div class="intro-banner"></div>
+    <div
+      class="header"
+      :style="{ backgroundImage: 'url(' + headerBg + ')' }"
+    ></div>
     <div class="intro-container">
       <div class="intro-container-header">
         <div class="intro-container-title">
@@ -12,99 +15,124 @@
         </div>
       </div>
       <div class="intro-container-box">
-        <tabs transitionName="fade">
-          <tab :title="'公司简介'">
-            <AnimateBox>
-              <span class="tab-title">公司简介</span>
-              <p>
-                中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。公司荣获全国质量管理奖、首届浙江省政府质量奖、首届温州市市长质量奖。中国低压电器行业产销量最大企业。
-              </p>
-              <p>
-                公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。公司荣获全国质量管理奖、首届浙江省政府质量奖、首届温州市市长质量奖。
-                中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。
-              </p>
-              <p>
-                公司荣获全国质量管理奖、首届浙江省政府质量奖、首届温州市市长质量奖。中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。公司荣获全国质量管理奖、首届浙江省政府质量奖、首届温州市市长质量奖。
-              </p>
-              <p>
-                中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。公司荣获全国质量管理奖、首届浙江省政府质量奖、首届温州市市长质量奖。中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。
-              </p>
-              <p>
-                公司荣获全国质量管理奖、首届浙江省政府质量奖、首届温州市市长质量奖。中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。公司荣获全国质量管理奖、首届浙江省政府质量奖、首届温州市市长质量奖。
-              </p>
-            </AnimateBox>
-          </tab>
-          <tab :title="'企业文化'">
-            <AnimateBox>
-              <span class="tab-title">企业文化</span>
-              <p class="tab-text">
-                基金将通过竞赛、评选、成果转化、奖励等办法，培养一批创新人才，培育一批创新成果，树立一批创新典型，倡导创新文化，引导青年树立自主创新意识，提高自主创新能力
-              </p>
-            </AnimateBox>
-          </tab>
-          <tab :title="'品牌体系'">
-            <AnimateBox>
-              <span class="tab-title">品牌体系</span>
-              <p class="tab-text">
-                投身创业创新实践；通过项目竞赛、贴息贷款、导师带徒等办法，改变青年就业观念该基金理事会将每年定期组织开展“创业浙江”大赛，评选产生的创新奖获得者将得到一定金额的奖励主要提供农业实用技术和来料加工业务指导，重点鼓励发展现代农业
-              </p>
-            </AnimateBox>
-          </tab>
-          <tab :title="'企业荣誉'">
-            <AnimateBox>
-              <span class="tab-title">企业荣誉</span>
-              <p class="tab-text">
-                中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。公司荣获全国质量管理奖、首届浙江省政府质量奖、首届温州市市长质量奖。
-              </p>
-            </AnimateBox>
-          </tab>
-          <tab :title="'发展历程'">
-            <AnimateBox>
-              <span>发展历程</span>
-              <p>
-                中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。公司荣获全国质量管理奖、首届浙江省政府质量奖、首届温州市市长质量奖。
-              </p>
-            </AnimateBox>
-          </tab>
-          <tab :title="'发展愿景'">
-            <AnimateBox>
-              <span>发展愿景</span>
-              <p>
-                中国低压电器行业产销量最大企业。公司专业从事配电电器、控制电器、终端电器、电源电器和电力电子等100多个系列、10000多种规格的低压电器产品的研发、生产和销售。公司荣获全国质量管理奖、首届浙江省政府质量奖、首届温州市市长质量奖。
-              </p>
-            </AnimateBox>
-          </tab>
-        </tabs>
+        <div class="tab">
+          <div
+            v-for="(tab, index) in tabs"
+            v-bind:key="tab.id"
+            :class="['tab-item', { active: currentTab === index + 1 }]"
+            @click="onClickTab(index + 1)"
+          >
+            <p class="tab-item-title">{{ tab.name }}</p>
+          </div>
+        </div>
+
+        <div class="content">
+          <div v-if="loading" class="loading">
+            正在加载中...
+          </div>
+          <div v-else>
+            <AnimateBox><div v-html="info.content"></div></AnimateBox>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-import { Tabs, Tab } from "vue-tmn-tabs";
 import AnimateBox from "components/AnimateBox.vue";
+import urls from "../utils/urls";
+
+const headerBg = require("assets/images/intro-banner.png");
 
 export default {
   name: "Intro",
   components: {
-    Tab,
-    Tabs,
     AnimateBox
   },
   data: function() {
     return {
+      headerBg,
+      loading: true,
+      currentTab: 1,
+      info: null,
       galleryThumbs: null,
-      galleryTop: null
+      galleryTop: null,
+      tabs: [
+        {
+          id: 11,
+          name: "公司简介"
+        },
+        {
+          id: 12,
+          name: "企业文化"
+        },
+        {
+          id: 13,
+          name: "品牌体系"
+        },
+        {
+          id: 14,
+          name: "企业荣誉"
+        },
+        {
+          id: 15,
+          name: "发展历程"
+        },
+        {
+          id: 16,
+          name: "发展愿景"
+        }
+      ]
     };
   },
-  mounted() {}
+  mounted() {
+    this.getData(this.currentTab);
+  },
+  methods: {
+    onClickTab(index) {
+      console.log(111, index);
+      this.currentTab = index;
+      this.getData(this.currentTab);
+    },
+    getData(index) {
+      this.loading = true;
+      this.fetchGet(urls.list, {
+        catid: this.tabs[index - 1].id
+      })
+        .then(res => {
+          console.log("哈哈哈", res);
+          if (res.status === 200) {
+            // this["mediaInfo" + id] = res.data;
+            this.info = res.data || {
+              content: "无"
+            };
+            this.loading = false;
+          } else {
+            // this.mediaInfo = [];
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  }
 };
 </script>
 <style lang="less">
+@green: #038a03;
+@tips: #8d8c8c;
 .intro {
-  .intro-banner {
+  .loading {
+    font-size: 16px;
+    color: #035d03;
+  }
+
+  .header {
     width: 100%;
-    height: 380px;
-    background: seagreen;
+    height: 300px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
   }
   .intro-container {
     max-width: 1171px;
@@ -140,65 +168,50 @@ export default {
     }
     .intro-container-box {
       height: 800px;
+
+      .tab {
+        display: inline-block;
+        width: 70px;
+        margin-right: 90px;
+        vertical-align: top;
+      }
+      .tab-item {
+        line-height: 1;
+        display: block;
+        cursor: pointer;
+        font-size: 16px;
+        color: #6b6b6b;
+        line-height: 48px;
+        &.active {
+          .tab-item-title {
+            color: @green;
+            border-bottom: solid 2px @green;
+          }
+        }
+      }
+      .tab-item-tips {
+        font-size: 16px;
+        color: #8d8c8c;
+      }
+
+      .content {
+        display: inline-block;
+        max-width: 1000px;
+        img {
+          max-width: 100%;
+        }
+      }
     }
   }
 }
-.vue-tabs {
-  & > div {
-    display: inline-block;
-  }
-}
 
-.vue-tabs__nav {
-  display: inline-block;
-  vertical-align: top;
-  background: transparent;
-  margin-right: 11%;
-  flex-direction: column;
-  align-items: baseline;
-  width: 64px;
-}
-.vue-tabs__nav-item {
-  font-size: 16px;
-  color: #6b6b6b;
-  line-height: 48px;
-  padding: 0;
-  outline: none;
-  border: none;
-  background-color: transparent;
-}
-
-.vue-tabs__nav-item.--active {
-  color: #038a03;
-  border-bottom: solid 2px #038a03;
-}
-
-.vue-tabs__panel {
-  display: inline-block;
-  width: 976px;
-  outline: none;
-}
-
-.vue-tabs__panel[hidden="hidden"] {
-  display: none;
-}
-
-.vue-tabs__panel-container {
-  color: #535353;
-  span {
-    font-size: 18px;
-    line-height: 80px;
-    text-align: center;
-    display: block;
-  }
-  p {
-    font-size: 14px;
-    line-height: 30px;
-    text-align: left;
-  }
-}
 @media screen and (max-width: 1070px) {
   .intro {
+    .loading {
+      padding: 16px 0 0 0;
+      text-align: center;
+      font-size: 16px;
+    }
     .intro-banner {
       height: 284px;
     }
@@ -213,25 +226,27 @@ export default {
       }
       .intro-container-box {
         height: auto;
-        .vue-tabs {
-          .vue-tabs__nav {
-            display: flex;
-            margin: 0;
-            width: 100%;
-            flex-direction: row;
-            padding: 0 20px;
-            box-sizing: border-box;
-            .vue-tabs__nav-item {
-              flex: 1;
-              padding: 10px;
-              line-height: 25px;
+        .tab {
+          display: flex;
+          width: 100%;
+          margin: 0;
+          padding-top: 40px;
+
+          .tab-item {
+            flex: 1;
+            width: auto;
+            text-align: center;
+            padding: 0 10px 0 10px;
+            line-height: 1.5;
+            .tab-item-title {
+              padding-bottom: 10px;
             }
           }
-          .vue-tabs__panel {
-            padding: 10px 20px;
-            width: 100%;
-            box-sizing: border-box;
-          }
+        }
+        .content {
+          width: 100%;
+          padding: 20px;
+          box-sizing: border-box;
         }
       }
     }

@@ -28,13 +28,13 @@
         <ul class="ct-intro">
           <li>
             <AnimateBox :delayTime="0" class="antbox">
-              <img src="../assets/images/home/itr1.jpg" alt="" srcset="" />
+              <img src="../assets/images/product/2-1.jpg" alt="" srcset="" />
             </AnimateBox>
           </li>
 
           <li>
             <AnimateBox :delayTime="1" style="display: inline-block;">
-              <img src="../assets/images/home/itr2.jpg" alt="" srcset="" />
+              <img src="../assets/images/product/2-2.jpg" alt="" srcset="" />
             </AnimateBox>
           </li>
         </ul>
@@ -46,12 +46,12 @@
         <ul class="ct-intro">
           <li>
             <AnimateBox :delayTime="0" style="display: inline-block;">
-              <img src="../assets/images/home/itr1.jpg" alt="" srcset="" />
+              <img src="../assets/images/product/3-1.jpg" alt="" srcset="" />
             </AnimateBox>
           </li>
           <li>
             <AnimateBox :delayTime="0" style="display: inline-block;">
-              <img src="../assets/images/home/itr2.jpg" alt="" srcset="" />
+              <img src="../assets/images/product/3-1.jpg" alt="" srcset="" />
             </AnimateBox>
           </li>
         </ul>
@@ -59,7 +59,12 @@
     </div>
     <div class="content center">
       <p class="ct-title">富氧泥</p>
-      <img class="ct-img" src="../assets/images/home_bg.jpg" alt="" srcset="" />
+      <img
+        class="ct-img"
+        src="../assets/images/product/4-1.jpg"
+        alt=""
+        srcset=""
+      />
     </div>
   </div>
 </template>
@@ -67,37 +72,47 @@
 <script>
 import AnimateBox from "components/AnimateBox.vue";
 
-const headerBg = require("assets/images/home_bg.jpg");
+const headerBg = require("assets/images/product-banner.png");
 const foodList = [
   {
     id: 1,
-    name: "魅力女生养成果",
-    img: require("assets/images/home/itr1.jpg")
+    name: "红贝贝生菜",
+    img: require("assets/images/product/1-1.jpg")
   },
   {
     id: 2,
-    name: "魅力女生养成果",
-    img: require("assets/images/home/itr2.jpg")
+    name: "红樱桃番茄",
+    img: require("assets/images/product/1-2.jpg")
   },
   {
     id: 3,
-    name: "魅力女生养成果",
-    img: require("assets/images/home/itr3.jpg")
+    name: "上海青",
+    img: require("assets/images/product/1-3.jpg")
   },
   {
     id: 4,
-    name: "魅力女生养成果",
-    img: require("assets/images/home/itr4.jpg")
+    name: "水果玉米",
+    img: require("assets/images/product/1-4.jpg")
   },
   {
     id: 5,
-    name: "魅力女生养成果",
-    img: require("assets/images/home/itr1.jpg")
+    name: "吮指胡萝卜",
+    img: require("assets/images/product/1-5.jpg")
   },
   {
     id: 6,
-    name: "魅力女生养成果",
-    img: require("assets/images/home/itr1.jpg")
+    name: "西芹",
+    img: require("assets/images/product/1-6.jpg")
+  },
+  {
+    id: 7,
+    name: "洋葱",
+    img: require("assets/images/product/1-7.jpg")
+  },
+  {
+    id: 8,
+    name: "紫甘蓝",
+    img: require("assets/images/product/1-8.jpg")
   }
 ];
 export default {

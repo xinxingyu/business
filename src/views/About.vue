@@ -11,14 +11,14 @@
     <div class="content center">
       <div class="content-info">
         <div class="info-title">
-          <p>百瑞众康文化传播有限公司</p>
+          <p>北京百瑞众康农业科技发展股份有限公司</p>
           <span>Beijing WEBSITE Culture Communication Co. Ltd.</span>
         </div>
         <div class="info-content">
           <p v-for="item in info" v-bind:key="item.key">
             {{ item.key }}：{{ item.value }}
           </p>
-          <a href="https://www.....com">https://www.....com</a>
+          <!-- <a href="http://www.brzkgf.com">http://www.brzkgf.com</a> -->
         </div>
       </div>
       <ul class="content-list">
@@ -40,23 +40,15 @@
 <script>
 import AnimateBox from "components/AnimateBox.vue";
 
-const headerBg = require("assets/images/home_bg.jpg");
+const headerBg = require("assets/images/about-banner.png");
 const info = [
   {
     key: "总部地址",
-    value: "xxxxx"
+    value: "北京市大兴区星光影视园17号楼A3"
   },
   {
     key: "总部电话",
-    value: "xxxxx"
-  },
-  {
-    key: "电子邮箱",
-    value: "xxxxx"
-  },
-  {
-    key: "邮政编码",
-    value: "xxxxx"
+    value: "400-650-8612"
   }
 ];
 

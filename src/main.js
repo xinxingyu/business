@@ -3,6 +3,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import { fetchPost, fetchGet } from "./utils/fetch";
 import { Tab, Tabs } from "vue-tmn-tabs";
 import "./assets/swiper/swiper.min.css";
 // import "./assets/fonts/font.module.less";
@@ -16,6 +17,11 @@ import "./assets/swiper/swiper.min.css";
 // Vue.component("Table", Table);
 
 import { Swipe, SwipeItem } from "vant";
+import axios from "axios";
+
+Vue.prototype.$axios = axios;
+Vue.prototype.fetchPost = fetchPost;
+Vue.prototype.fetchGet = fetchGet;
 
 Vue.use(Swipe).use(SwipeItem);
 // Vue.component("Button", Button);

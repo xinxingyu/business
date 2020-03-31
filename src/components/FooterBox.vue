@@ -7,7 +7,7 @@
       </div>
       <div class="ct-center">
         <div class="ct-center-main">
-          <p class="title">中国时代远望科技有限公司</p>
+          <p class="title">北京百瑞众康农业科技发展股份有限公司</p>
           <p v-for="cpi in componyIntro" v-bind:key="cpi.key" class="tips">
             {{ cpi.key }}：{{ cpi.value }}
           </p>
@@ -39,13 +39,20 @@
               v-bind:key="item.key"
               class="tips"
             >
-              {{ item.key }}
+              <router-link class="footer-li-router" :to="{ path: item.router }">
+                {{ item.key }}
+              </router-link>
             </p>
           </div>
           <div class="list-item">
             <p class="title">新闻媒体</p>
             <p v-for="item in MediaInfoList" v-bind:key="item.key" class="tips">
-              {{ item.key }}
+              <router-link
+                class="footer-li-router"
+                :to="{ path: item.router, query: { tid: item.value } }"
+              >
+                {{ item.key }}
+              </router-link>
             </p>
           </div>
         </div>
@@ -60,28 +67,28 @@
 const componyIntro = [
   {
     key: "地址",
-    value: "北京市建外SOHO东区2号楼"
+    value: "北京市大兴区星光影视园17号楼A3"
   },
-  {
-    key: "邮编",
-    value: "100000"
-  },
+  // {
+  //   key: "邮编",
+  //   value: "100000"
+  // },
   {
     key: "电话",
-    value: "010-88491188"
-  },
-  {
-    key: "手机",
-    value: "010-88490025"
-  },
-  {
-    key: "传真",
-    value: "----"
-  },
-  {
-    key: "邮箱",
-    value: "---"
+    value: "400-650-8612"
   }
+  // {
+  //   key: "手机",
+  //   value: "010-88490025"
+  // },
+  // {
+  //   key: "传真",
+  //   value: "----"
+  // },
+  // {
+  //   key: "邮箱",
+  //   value: "---"
+  // }
 ];
 const IntroInfoList = [
   {
@@ -152,16 +159,19 @@ const EcologyInfoList = [
 ];
 const MediaInfoList = [
   {
-    key: "公益活动",
-    router: ""
+    key: "公司活动",
+    router: "media",
+    value: 1
   },
   {
     key: "企业快讯",
-    router: ""
+    router: "media",
+    value: 2
   },
   {
     key: "媒体报道",
-    router: ""
+    router: "media",
+    value: 3
   }
 ];
 
@@ -216,7 +226,6 @@ export default {
   .ct-center {
     .ct-center-main {
       display: inline-block;
-      margin-right: 207px;
       .title {
         font-size: 16px;
         margin-bottom: 33px;
@@ -227,8 +236,9 @@ export default {
       }
     }
     .ct-center-list {
-      display: inline-block;
       vertical-align: top;
+      float: right;
+
       .list-item {
         display: inline-block;
         vertical-align: top;

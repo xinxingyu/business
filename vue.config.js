@@ -22,5 +22,14 @@ module.exports = {
       .set("base", resolve("src/base"))
       .set("static", resolve("src/static"));
     // .set("swiperjs", resolve("node_modules/swiper/js/swiper.min.js"));
+  },
+  devServer: {
+    proxy: {
+      "/list": {
+        target: "http://www.brzkgf.com/d/list.php",
+        ws: true,
+        changeOrigin: true
+      }
+    }
   }
 };

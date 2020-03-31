@@ -6,7 +6,7 @@
         <p class="subtitle">Contact Us</p>
       </div>
       <div class="main-list">
-        <h3>中国时代远望科技有限公司</h3>
+        <h3>北京百瑞众康农业科技发展股份有限公司</h3>
         <div>
           <p v-for="cpi in componyIntro" v-bind:key="cpi.key" class="tips">
             <span>{{ cpi.key }}：</span>{{ cpi.value }}
@@ -44,28 +44,28 @@
 const componyIntro = [
   {
     key: "地址",
-    value: "北京市建外SOHO东区2号楼"
+    value: "北京市大兴区星光影视园17号楼A3"
   },
-  {
-    key: "邮编",
-    value: "100000"
-  },
+  // {
+  //   key: "邮编",
+  //   value: "100000"
+  // },
   {
     key: "电话",
-    value: "010-88491188"
-  },
-  {
-    key: "手机",
-    value: "010-88490025"
-  },
-  {
-    key: "传真",
-    value: "----"
-  },
-  {
-    key: "邮箱",
-    value: "---"
+    value: "400-650-8612"
   }
+  // {
+  //   key: "手机",
+  //   value: "010-88490025"
+  // },
+  // {
+  //   key: "传真",
+  //   value: "----"
+  // },
+  // {
+  //   key: "邮箱",
+  //   value: "---"
+  // }
 ];
 const IntroInfoList = [
   {
